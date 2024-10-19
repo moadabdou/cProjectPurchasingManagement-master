@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "winsock.h": "c",
+        "errors.h": "c"
+    }
+}
