@@ -119,4 +119,13 @@
 		"birthdate":	"2024-10-17",
 		"role":	0,
 		"id":	10008005
+	}, {
+		"name":	"moad elabdellaoui",
+		"email":	"heee@h.com",
+		"password":	"sjfgvñehdgvd",
+		"phone_number":	"0762017671",
+		"CIN":	"RC43656",
+		"birthdate":	"2002-12-24",
+		"role":	0,
+		"id":	10021413
 	}]

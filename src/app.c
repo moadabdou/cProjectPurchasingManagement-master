@@ -95,7 +95,7 @@ int main() {
         printf("\n cookie : %s %s" , id_cookie.name , id_cookie.value);
 
         // Handle GET or POST requests
-          if (strncmp(buffer, INDEX , strlen(INDEX) ) == 0 || strncmp(buffer, DASHBOARD , strlen(DASHBOARD) ) == 0) {
+        if (strncmp(buffer, INDEX , strlen(INDEX) ) == 0 || strncmp(buffer, DASHBOARD , strlen(DASHBOARD) ) == 0) {
 
             //checking  cookies validity 
             char *endptr;  

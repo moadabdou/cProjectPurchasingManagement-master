@@ -21,6 +21,7 @@ body {
     background: url("images/background.jpg") center/cover no-repeat;
 }
 
+
 header {
     position: fixed;
     width: 100%;
@@ -182,6 +183,13 @@ header {
     background-size: cover;
 }
 
+.login .form-details .overly,
+.signup .form-details .overly {
+    background: rgba(0, 0, 0, .7);
+    padding: 20px;
+    border-radius: 10px;
+}
+
 .signup .form-details {
     padding: 0 20px;
     background: url("images/signup.jpg");
@@ -196,7 +204,7 @@ header {
 
 .form-box h2 {
     text-align: center;
-    margin-bottom: 29px;
+    margin-bottom: 10px;
 }
 
 form .input-field {
@@ -393,9 +401,11 @@ form button:hover {
         <span class="close-btn material-symbols-rounded">close</span>
         <div class="form-box login">
             <div class="form-details">
-                <h2>Welcome Back</h2>
-                <p>Please log in using your personal information</p>
-                <div id="login-error-message"></div>
+                <div class="overly">
+                    <h2>Welcome Back</h2>
+                    <p>Please log in using your personal information</p>
+                    <div id="login-error-message"></div>
+                </div>
             </div>
             <div class="form-content">
                 <h2>LOGIN</h2>
@@ -419,8 +429,10 @@ form button:hover {
         </div>
         <div class="form-box signup">
             <div class="form-details">
-                <h2>Create Account</h2>
-                <div id="sign-error-message"></div>
+                <div class="overly">
+                    <h2>Create Account</h2>
+                    <div id="sign-error-message"></div>
+                </div>
            </div>
             <div class="form-content">
                 <h2>SIGNUP</h2>
