@@ -9,4 +9,6 @@
 
 #define SEND_ERROR_500  char *error_message = "HTTP/1.1 500 \r\nContent-Length: 0\r\n\r\n";\
                         send(client_socket, error_message, strlen(error_message), 0);
+#define SEND_ERROR_400  char *error_message = "HTTP/1.1 400 \r\nContent-Length: 0\r\n\r\n";\
+                        send(client_socket, error_message, strlen(error_message), 0);
 

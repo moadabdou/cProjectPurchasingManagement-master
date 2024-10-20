@@ -23,7 +23,9 @@
 int main() {
 
     //intialize  the  server  
-
+    Sessions SESSIONS;
+    SESSIONS.sessions = (int *)calloc(10 ,sizeof(int));
+    SESSIONS.max = 10;
     WSADATA wsa;
     SOCKET server_socket, client_socket;
     struct sockaddr_in server_addr, client_addr;
@@ -87,22 +89,32 @@ int main() {
         buffer[bytes_read] = '\0';
         printf("\n recieved  : \n %s \n " , buffer );
 
-        Cookie id_cookie = get_cookie(buffer, "name");
+        Cookie id_cookie = get_cookie(buffer, "id");
 
         printf("\n cookie : %s %s" , id_cookie.name , id_cookie.value);
 
         // Handle GET or POST requests
-        if (strncmp(buffer, INDEX , strlen(INDEX) ) == 0) {
+          if (strncmp(buffer, INDEX , strlen(INDEX) ) == 0 || strncmp(buffer, DASHBOARD , strlen(DASHBOARD) ) == 0) {
 
-            index_html(client_socket);
+            //checking  cookies validity 
+            char *endptr;  
+            int num_id =  strtol(id_cookie.value , &endptr ,  10);
 
-        }else if(strncmp(buffer, DASHBOARD , strlen(DASHBOARD) ) == 0){
-
-            dashboard_html(client_socket);
+            if (*endptr == '\0'){
+                printf("\n check session : %d" , check_in_sessions(SESSIONS , num_id));
+                if (check_in_sessions(SESSIONS , num_id)){
+                    dashboard_html(client_socket);
+                }else {
+                    index_html(client_socket);
+                }
+            }else {
+                printf("\nERROR :  invalid id cookie > login page");
+                index_html(client_socket);
+            }
 
         } else if (strncmp(buffer, API, strlen(API)) == 0) {
 
-            handle_post(client_socket, buffer);
+            handle_post(client_socket, buffer,  SESSIONS);
 
         } else {
             SEND_ERROR_404;

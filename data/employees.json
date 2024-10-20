@@ -1,0 +1,122 @@
+[{
+		"id":	12345678,
+		"password":	"password123",
+		"email":	"example1@email.com",
+		"CIN":	"A1234567",
+		"phone_number":	"+1234567890",
+		"role":	1,
+		"birthdate":	"1990-01-01",
+		"name":	"John Doe"
+	}, {
+		"id":	23456789,
+		"password":	"pass456",
+		"email":	"example2@email.com",
+		"CIN":	"B2345678",
+		"phone_number":	"+1987654321",
+		"role":	0,
+		"birthdate":	"1985-05-15",
+		"name":	"Jane Smith"
+	}, {
+		"id":	34567890,
+		"password":	"mypassword789",
+		"email":	"example3@email.com",
+		"CIN":	"C3456789",
+		"phone_number":	"+1231231234",
+		"role":	0,
+		"birthdate":	"1992-07-20",
+		"name":	"Bob Johnson"
+	}, {
+		"id":	45678901,
+		"password":	"wordpass321",
+		"email":	"example4@email.com",
+		"CIN":	"D4567890",
+		"phone_number":	"+3213213210",
+		"role":	0,
+		"birthdate":	"1995-03-10",
+		"name":	"Alice Williams"
+	}, {
+		"id":	56789012,
+		"password":	"newpassword456",
+		"email":	"example5@email.com",
+		"CIN":	"E5678901",
+		"phone_number":	"+1472583690",
+		"role":	0,
+		"birthdate":	"1998-09-25",
+		"name":	"Chris Brown"
+	}, {
+		"id":	67890123,
+		"password":	"pass654321",
+		"email":	"example6@email.com",
+		"CIN":	"F6789012",
+		"phone_number":	"+9638527410",
+		"role":	0,
+		"birthdate":	"1989-11-05",
+		"name":	"David Green"
+	}, {
+		"id":	78901234,
+		"password":	"letmein098",
+		"email":	"example7@email.com",
+		"CIN":	"G7890123",
+		"phone_number":	"+6549873210",
+		"role":	0,
+		"birthdate":	"1991-12-12",
+		"name":	"Ella Thompson"
+	}, {
+		"id":	89012345,
+		"password":	"abc123456",
+		"email":	"example8@email.com",
+		"CIN":	"H8901234",
+		"phone_number":	"+3216549870",
+		"role":	0,
+		"birthdate":	"1993-08-08",
+		"name":	"George White"
+	}, {
+		"id":	90123456,
+		"password":	"passabc098",
+		"email":	"example9@email.com",
+		"CIN":	"I9012345",
+		"phone_number":	"+2583691470",
+		"role":	0,
+		"birthdate":	"1987-02-18",
+		"name":	"Helen Black"
+	}, {
+		"id":	12345679,
+		"password":	"examplepass567",
+		"email":	"example10@email.com",
+		"CIN":	"J1234568",
+		"phone_number":	"+7418529630",
+		"role":	0,
+		"birthdate":	"1996-04-22",
+		"name":	"Ivy Clark"
+	}, {
+		"email":	"a@a.com",
+		"cin":	"RC123",
+		"name":	"ahmed",
+		"id":	10013995
+	}, {
+		"name":	"ahmed",
+		"email":	"h@h.com",
+		"password":	"sjfgvñehdgvd",
+		"phone_number":	"986767795",
+		"CIN":	"yr4465656",
+		"birthdate":	"2024-10-17",
+		"id":	10018597
+	}, {
+		"name":	"ahmed",
+		"email":	"h@a.com",
+		"password":	"sjfgvñehdgvd",
+		"phone_number":	"986767795",
+		"CIN":	"yr4465656",
+		"birthdate":	"2024-10-17",
+		"role":	0,
+		"id":	10018878
+	}, {
+		"name":	"omar ",
+		"email":	"h@hll.com",
+		"password":	"sjfgvñehdgvd",
+		"phone_number":	"0762017671",
+		"CIN":	"RC43656",
+		"birthdate":	"2024-10-17",
+		"role":	0,
+		"id":	10008005
+	}]

@@ -11,6 +11,17 @@ typedef struct Cookie{
 }Cookie;
 Cookie  get_cookie(char *buffer , const char *name);
 
+//sessions
+typedef struct  Sessions
+{
+    int  *sessions;
+    int  max ;
+}Sessions;
+
+char open_session(Sessions SESSIONS,  int id);
+void close_session(Sessions SESSIONS , int id );
+char check_in_sessions(Sessions SESSIONS, int id);
+
 //files.c
 typedef struct File_prop{
     char *content ; 

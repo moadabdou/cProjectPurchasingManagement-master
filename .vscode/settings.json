@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "winsock.h": "c",
-        "errors.h": "c"
+        "errors.h": "c",
+        "cjson.h": "c",
+        "api.h": "c"
     }
 }
