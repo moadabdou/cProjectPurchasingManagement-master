@@ -18,7 +18,7 @@
 body {
     height: 100vh;
     width: 100%;
-    background: url("") center/cover no-repeat;
+    background: url("images/background.jpg") center/cover no-repeat;
 }
 
 header {
@@ -54,8 +54,9 @@ header {
 }
 
 .navbar .logo img {
-    width: 40px;
+    width: 150px;
     border-radius: 50%;
+    filter: invert(1);
 }
 
 .navbar .logo h2 {
@@ -119,8 +120,10 @@ header {
     pointer-events: none;
     max-width: 720px;
     background: #fff;
-    border: 2px solid #fff;
+    border: 2px solid #00bcd4;
+    box-shadow: 0px 0px 4px 0px;
     transform: translate(-50%, -70%);
+
 }
 
 .show-popup .form-popup {
@@ -174,14 +177,14 @@ header {
 
 .login .form-details {
     padding: 0 40px;
-    background: url("");
+    background: url("images/login.jpg");
     background-position: center;
     background-size: cover;
 }
 
 .signup .form-details {
     padding: 0 20px;
-    background: url("");
+    background: url("images/signup.jpg");
     background-position: center;
     background-size: cover;
 }
@@ -371,8 +374,8 @@ form button:hover {
         <nav class="navbar">
             <span class="hamburger-btn material-symbols-rounded">menu</span>
             <a href="#" class="logo">
-                <img src="" alt="logo">
-                <h2>CodingNepal</h2>
+                <img src="images/logo.jpg" alt="logo">
+                <h2> Purchasing Mangement </h2>
             </a>
             <ul class="links">
                 <span class="close-btn material-symbols-rounded">close</span>
@@ -457,6 +460,8 @@ form button:hover {
     </div>
 
     <script>
+        history.replaceState(null, '', '/');
+
         function setCookie(cname, cvalue, exdays) {
             const d = new Date();
             d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));

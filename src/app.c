@@ -7,6 +7,7 @@
 #include "tools/tools.h"
 #include "pages/pages.h"
 #include "api/api.h"
+#include "assets/assets.h"
 #include "tools/errors.h"
 
 #pragma comment(lib, "ws2_32.lib")  // Link with Winsock library
@@ -16,7 +17,7 @@
 #define INDEX "GET / "
 #define DASHBOARD "GET /dashboard"
 #define API   "POST /api"
-
+#define IMAGE "GET /images/"
 
 
 //server  http request  handlers 
@@ -116,7 +117,9 @@ int main() {
 
             handle_post(client_socket, buffer,  SESSIONS);
 
-        } else {
+        } else  if (strncmp(buffer, IMAGE, strlen(IMAGE)) == 0){
+            handle_images(client_socket, buffer);
+        }else {
             SEND_ERROR_404;
         }
 

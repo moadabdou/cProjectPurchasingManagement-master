@@ -75,6 +75,7 @@ void handel_employee_api(SOCKET client_socket, char *query , char *body, Session
         if (json_file.content == NULL) {
            printf("cant open  files ");
            SEND_ERROR_500;
+           return;
         }
 
         char header[256];
