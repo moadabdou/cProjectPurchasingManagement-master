@@ -6,7 +6,7 @@
 #include "../tools/tools.h"
 #include "../tools/errors.h"
 
-#define HTML_FILE "./layouts/dashboard.html"
+#define HTML_FILE "./layouts/dashboard.c"
 
 void dashboard_html(SOCKET client_socket) {
     File_prop html = read_file(HTML_FILE, "rb");  

@@ -19,14 +19,15 @@
 #define API   "POST /api"
 #define IMAGE "GET /images/"
 
+#define MAX_SESSIONS 10
 
 //server  http request  handlers 
 int main() {
 
     //intialize  the  server  
     Sessions SESSIONS;
-    SESSIONS.sessions = (int *)calloc(10 ,sizeof(int));
-    SESSIONS.max = 10;
+    SESSIONS.sessions = (int *)calloc(MAX_SESSIONS ,sizeof(int)); //to initialize  every  thing  with  zeros
+    SESSIONS.max = MAX_SESSIONS;
     WSADATA wsa;
     SOCKET server_socket, client_socket;
     struct sockaddr_in server_addr, client_addr;
