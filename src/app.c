@@ -121,7 +121,7 @@ int main() {
             handle_post(client_socket, buffer,  SESSIONS, num_id);
 
         } else  if (strncmp(buffer, IMAGE, strlen(IMAGE)) == 0){
-            printf("handling this image");
+            printf("\n handling an image right now ");
             handle_images(client_socket, buffer);
         }else {
             SEND_ERROR_404;

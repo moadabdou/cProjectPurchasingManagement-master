@@ -69,3 +69,15 @@ cJSON* searchById(cJSON* jsonArray, int targetId) {
     return NULL; // Return NULL if no match found
 }
 
+cJSON* searchById_cutomized(cJSON* jsonArray, int targetId, char *id_tag) {
+    cJSON* item = NULL;
+    cJSON_ArrayForEach(item, jsonArray) {
+        cJSON* id = cJSON_GetObjectItem(item, id_tag);
+        if (cJSON_IsNumber(id) && id->valueint == targetId) {
+            return item; // Return the item if the id matches targetId
+        }
+    }
+    return NULL; // Return NULL if no match found
+}
+
+

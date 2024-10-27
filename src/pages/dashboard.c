@@ -17,6 +17,8 @@
 
 #define EMPLOYEES_DATAFILE "./data/employees.json"
 #define SALES_DATAFILE "./data/sales.json"
+#define SALESITEMS_DATAFILE "./data/sales_items.json"
+#define PRODUCTS_DATAFILE "./data/products.json"
 
 
 
@@ -109,6 +111,7 @@ void dashboard_html(SOCKET client_socket,char *buffer, int user_id) {
             cJSON_ArrayForEach(item, sales_data) {
                 cJSON *id = cJSON_GetObjectItem(item, "employee_id");
                 if (cJSON_IsNumber(id) && id->valueint == user_id) {
+                    cJSON *sale_id = cJSON_GetObjectItem(item, "id"); 
                     cJSON *date = cJSON_GetObjectItem(item, "date"); 
                     cJSON *notes = cJSON_GetObjectItem(item, "notes"); 
                     cJSON *total_cost = cJSON_GetObjectItem(item, "total_cost"); 
@@ -116,11 +119,11 @@ void dashboard_html(SOCKET client_socket,char *buffer, int user_id) {
         
                         char template[512] = {'\0'};
                         
-                        sprintf(template, sale_html_item ,   id->valueint,
+                        sprintf(template, sale_html_item ,   sale_id->valueint,
                                                              notes->valuestring,
                                                              total_cost->valuedouble,
                                                              date->valuestring,
-                                                             id->valueint);
+                                                             sale_id->valueint);
 
                         append_to_string(&sales_list, template);
 
@@ -128,17 +131,18 @@ void dashboard_html(SOCKET client_socket,char *buffer, int user_id) {
                 }
             }
 
-            if (sales_list == NULL){
-                sales_list =  " no sales ";
-            }
-
             //render  to  the  html component
 
             side_content = c_html_render(SALES_LIST, (Props []){{
-                sales_list, 
+                sales_list == NULL ? " no sales " : sales_list, 
                 "sales_list",
                 1
             }}, 1);
+
+            if (sales_list == NULL){
+                free(sales_list);
+            }
+
 
         }else if(strncmp(query, "/tasks" , strlen("/tasks"))== 0){
             active = "1";
@@ -148,7 +152,113 @@ void dashboard_html(SOCKET client_socket,char *buffer, int user_id) {
             side_content = c_html_render(NEWSALE , NULL , 0);
         }else if(strncmp(query, "/saleDetails" , strlen("/saleDetails"))== 0){
             active = "0";
-            side_content = c_html_render(SALE_DETAILS , NULL , 0);
+            //getting  sale id  from  the url 
+            char *url_sale_id = query + strlen("/saleDetails/") ;  
+            printf("\n sale_id  %s", url_sale_id);
+            
+            char *endptr;  
+            int sale_id =  strtol(url_sale_id , &endptr ,  10);
+
+            if(*endptr == '\0'){
+                //getting  data  files 
+                File_prop sales   = read_file(SALES_DATAFILE, "r"),
+                        sales_item = read_file(SALESITEMS_DATAFILE, "r"),
+                        products   = read_file(PRODUCTS_DATAFILE ,"r");
+                if(sales.content == NULL || sales_item.content == NULL ||  products.content == NULL){
+                    printf("\n cant open one of the files :  %s %s %s", SALES_DATAFILE , SALESITEMS_DATAFILE, PRODUCTS_DATAFILE);
+                    SEND_ERROR_500;
+                    return;
+                }  
+                //parsing data  
+                cJSON *sales_json = cJSON_Parse(sales.content);
+                cJSON *sales_item_json = cJSON_Parse(sales_item.content);
+                cJSON *products_json = cJSON_Parse(products.content);
+
+                if (sales_json == NULL || sales_item_json == NULL || products_json == NULL){
+                    printf("\n cant parse data one of the files :  %s %s %s", SALE_DETAILS , SALESITEMS_DATAFILE, PRODUCTS_DATAFILE);
+                    SEND_ERROR_500;
+                    return;
+                }
+
+                //getting sale information
+                cJSON *sale_data =  searchById(sales_json, sale_id);
+                char str_cost[10];
+                sprintf(str_cost, "%.2f", cJSON_GetObjectItem(sale_data, "total_cost")->valuedouble);
+                char str_id[15]; 
+                sprintf(str_id, "%d", cJSON_GetObjectItem(sale_data, "id")->valueint);
+
+
+                //getting  products of this sale  
+                char *products_list_html = NULL;
+
+                cJSON *sale_products =  searchById_cutomized(sales_item_json, sale_id, "sale_id");
+                if (sale_products != NULL){
+                    const char* product_item_html =   "<tr>\n"
+                                                "    <td>%d</td>\n"
+                                                "    <td>%s</td>\n"
+                                                "    <td>%s</td>\n"
+                                                "    <td>%.2lf</td>\n"
+                                                "    <td>%d</td>\n"
+                                                "    <td>$%.2lf</td>\n"
+                                                "    <td>$%.2lf</td>\n"
+                                                "</tr>\n";
+                    char template[512] = {'\0'};
+
+                    cJSON *products_list =  cJSON_GetObjectItem( sale_products , "products");
+                    
+                    cJSON* product = NULL;
+                    cJSON_ArrayForEach(product, products_list) {
+                        int product_id = cJSON_GetObjectItem(product, "product_id")->valueint;
+                        //getting the rest  of the data  
+                        cJSON* product_details = searchById(products_json, product_id);
+
+                        sprintf(template, product_item_html, 
+                                product_id,
+                                cJSON_GetObjectItem(product_details, "name")->valuestring,
+                                cJSON_GetObjectItem(product_details, "category")->valuestring,
+                                cJSON_GetObjectItem(product_details, "rating")->valuedouble,
+                                cJSON_GetObjectItem(product, "quantity")->valueint,
+                                cJSON_GetObjectItem(product_details, "price")->valuedouble,
+                                cJSON_GetObjectItem(product_details, "price")->valuedouble * 
+                                cJSON_GetObjectItem(product, "quantity")->valueint
+                            );
+                        append_to_string(&products_list_html, template);
+
+                    }
+
+                }
+                //supposing that  the data  is clean and dont need to  be treated
+                Props props[] = {{
+                    str_id,
+                    "sale_id",
+                    1
+                },{
+                    cJSON_GetObjectItem(sale_data, "date")->valuestring,
+                    "sale_date",
+                    1 
+                },{
+                   cJSON_GetObjectItem(sale_data, "notes")->valuestring,
+                    "sale_notes",
+                    1  
+                },{
+                    str_cost,
+                    "total_cost",
+                    1 
+                },{
+                    products_list_html ==NULL ? "no products" : products_list_html,
+                    "products_list",
+                    1
+                }};
+                int props_length  =  sizeof(props)/sizeof(Props);
+                side_content = c_html_render(SALE_DETAILS , props , props_length);
+
+                if (products_list_html != NULL){
+                    free(products_list_html);
+                }
+
+            }else {
+                side_content = c_html_render(SALE_DETAILS , NULL , 0);
+            }
         }else{
             active = "a";
             side_content = c_html_render(NOT_FOUND, NULL , 0);

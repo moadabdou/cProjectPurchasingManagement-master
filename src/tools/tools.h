@@ -38,6 +38,8 @@ int generate_id();
 void  update_data_in_indexed_array(cJSON *obj,cJSON *obj_array , char *identifier);
 void  delete_data_in_indexed_array_id(int id ,cJSON *obj_array, char *identifier);
 cJSON* searchById(cJSON* jsonArray, int targetId);
+cJSON* searchById_cutomized(cJSON* jsonArray, int targetId, char *id_tag);
+
 
 //dynamic_memory
 void append_to_string(char **buffer, const char *new_string);

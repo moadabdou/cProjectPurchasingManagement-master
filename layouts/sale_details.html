@@ -1,3 +1,61 @@
 <h1>
     welcom to sale details
 </h1>
+<div class="container mt-4">
+    <!-- Sale Details Section -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5>General Sale Details</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Sale ID:</strong> #
+                        //c_code:sale_id
+                    </p>
+                    <p><strong>Date:</strong>
+                        //c_code:sale_date
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>notes :</strong> 
+                        //c_code:sale_notes
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Details Table -->
+    <div class="card">
+        <div class="card-header bg-secondary text-white">
+            <h5>Products Involved in Sale</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>category</th>
+                        <th>rating</th>
+                        <th>Quantity</th>
+                        <th>Price per Unit</th>
+                        <th>Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    //c_code:products_list
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="4" class="text-end">Total</th>
+                        <th> $
+                            //c_code:total_cost
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
