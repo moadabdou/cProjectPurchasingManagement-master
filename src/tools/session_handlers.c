@@ -1,5 +1,5 @@
 #include "tools.h"
-
+#include <stdio.h>
 
 char open_session(Sessions SESSIONS,  int id){
     int i  =  0; 
@@ -16,6 +16,7 @@ char open_session(Sessions SESSIONS,  int id){
 }
 
 void close_session(Sessions SESSIONS , int id ){
+    printf("closing  session of %d \n" , id);
     int i  =  0; 
     for(;  i <  SESSIONS.max ; i++){
         if (SESSIONS.sessions[i] == id ){

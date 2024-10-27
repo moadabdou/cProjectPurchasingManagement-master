@@ -9,7 +9,7 @@
 
 #define EMPLOYEE_QUERY "/employees"
 
-void handle_post(SOCKET client_socket, char *request,  Sessions SESSIONS) { //api handler 
+void handle_post(SOCKET client_socket, char *request,  Sessions SESSIONS, int user_id) { //api handler 
 
 
     //getting the query of the api 
@@ -36,7 +36,7 @@ void handle_post(SOCKET client_socket, char *request,  Sessions SESSIONS) { //ap
 
     //getting the  api  function
     if (strncmp(query, EMPLOYEE_QUERY , strlen(EMPLOYEE_QUERY))== 0){
-        handel_employee_api(client_socket , query +  strlen(EMPLOYEE_QUERY) , body, SESSIONS); //as we found the query of  etudient we move the point  by litte so we cath only the following data
+        handel_employee_api(client_socket , query +  strlen(EMPLOYEE_QUERY) , body, SESSIONS, user_id); //as we found the query of  etudient we move the point  by litte so we cath only the following data
     }else  {
         SEND_ERROR_404_API;
     }

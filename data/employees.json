@@ -100,7 +100,8 @@
 		"phone_number":	"986767795",
 		"CIN":	"yr4465656",
 		"birthdate":	"2024-10-17",
-		"id":	10018597
+		"id":	10018597,
+		"role":0
 	}, {
 		"name":	"ahmed",
 		"email":	"h@a.com",
@@ -128,4 +129,22 @@
 		"birthdate":	"2002-12-24",
 		"role":	0,
 		"id":	10021413
+	}, {
+		"name":	"moad el abdellaoui",
+		"email":	"abdellawye@h.com",
+		"password":	"sjfgvñehdgvd",
+		"phone_number":	"0762017671",
+		"CIN":	"RC43656",
+		"birthdate":	"2024-10-10",
+		"role":	0,
+		"id":	10014026
+	}, {
+		"name":	"moad el abdellaoui🩻🩻🩻",
+		"email":	"abdawye@h.com",
+		"password":	"sjfgvñehdgvd",
+		"phone_number":	"0762017671",
+		"CIN":	"RC43656",
+		"birthdate":	"2024-10-10",
+		"role":	0,
+		"id":	10016905
 	}]

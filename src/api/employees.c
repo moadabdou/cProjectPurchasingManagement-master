@@ -12,6 +12,7 @@
 #define AUTH  "/auth"
 #define NEW  "/new"
 #define DELET "/delete" //delete  already  used 
+#define LOGOUT "/logout"
 
 char  check_email_validity(cJSON *json_data , cJSON *client_json){
     
@@ -60,7 +61,7 @@ cJSON *check_email_password_validity(cJSON *json_data , cJSON *client_json){
     return NULL;
 }
 
-void handel_employee_api(SOCKET client_socket, char *query , char *body, Sessions SESSIONS){
+void handel_employee_api(SOCKET client_socket, char *query , char *body, Sessions SESSIONS, int user_id){
     File_prop json_file;
     cJSON *client_data, *json_data;
 
@@ -189,7 +190,18 @@ void handel_employee_api(SOCKET client_socket, char *query , char *body, Session
 
         char *response = "HTTP/1.1 200 OK\r\nContent-Length: 2\r\n\r\n{}";
         send(client_socket, response, strlen(response), 0);
-    }else {
+    }else if(strncmp(query , LOGOUT ,  strlen(LOGOUT)) == 0){
+
+        if (user_id == 0){
+            SEND_ERROR_500;
+            return;
+        }
+
+        close_session(SESSIONS , user_id);
+        
+        char *response = "HTTP/1.1 200 OK\r\nContent-Length: 2\r\n\r\n{}";
+        send(client_socket, response, strlen(response), 0);
+    }else{
         SEND_ERROR_404_API;
     }
 }

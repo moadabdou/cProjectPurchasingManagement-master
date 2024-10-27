@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "date": "2024-10-20",
+        "notes": "First-time customer with a large order 🤣🤣🤣",
+        "employee_id": 10016905,
+        "total_cost": 150.75
+    },
+    {
+        "id": 2,
+        "date": "2024-10-21",
+        "notes": "Regular customer, applied discount",
+        "employee_id": 10016905,
+        "total_cost": 85.50
+    },
+    {
+        "id": 3,
+        "date": "2024-10-22",
+        "notes": "Bulk order for local business",
+        "employee_id": 10016905,
+        "total_cost": 430.00
+    },
+    {
+        "id": 4,
+        "date": "2024-10-23",
+        "notes": "Promotional sale",
+        "employee_id": 10016905,
+        "total_cost": 60.00
+    },
+    {
+        "id": 5,
+        "date": "2024-10-24",
+        "notes": "Customer returned for additional purchase",
+        "employee_id": 10018597,
+        "total_cost": 220.90
+    },
+    {
+        "id": 6,
+        "date": "2024-10-25",
+        "notes": "Late evening sale with rush processing",
+        "employee_id": 10018597,
+        "total_cost": 105.75
+    }
+]

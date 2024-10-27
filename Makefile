@@ -12,7 +12,8 @@ SRCS =  $(wildcard src/**/*.c)  $(wildcard src/*.c)
 app: 
 	$(CC) -g -o $(EXEC) $(SRCS) -lWs2_32 
 	gdb -ex "run" -ex "bt" $(EXEC)
-
+capp:
+	$(CC) -o $(EXEC) $(SRCS) -lWs2_32 && ./app 
 # Clean up the build
 clean:
 	rm $(EXEC) 

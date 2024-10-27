@@ -95,17 +95,17 @@ int main() {
 
         printf("\n cookie : %s %s" , id_cookie.name , id_cookie.value);
 
+         //checking  cookies validity 
+        char *endptr;  
+        int num_id =  strtol(id_cookie.value , &endptr ,  10);
+
         // Handle GET or POST requests
         if (strncmp(buffer, INDEX , strlen(INDEX) ) == 0 || strncmp(buffer, DASHBOARD , strlen(DASHBOARD) ) == 0) {
-
-            //checking  cookies validity 
-            char *endptr;  
-            int num_id =  strtol(id_cookie.value , &endptr ,  10);
 
             if (*endptr == '\0'){
                 printf("\n check session : %d" , check_in_sessions(SESSIONS , num_id));
                 if (check_in_sessions(SESSIONS , num_id)){
-                    dashboard_html(client_socket);
+                    dashboard_html(client_socket,buffer , num_id);
                 }else {
                     index_html(client_socket);
                 }
@@ -115,10 +115,13 @@ int main() {
             }
 
         } else if (strncmp(buffer, API, strlen(API)) == 0) {
-
-            handle_post(client_socket, buffer,  SESSIONS);
+            if (*endptr != '\0'){
+                num_id = 0;
+            }
+            handle_post(client_socket, buffer,  SESSIONS, num_id);
 
         } else  if (strncmp(buffer, IMAGE, strlen(IMAGE)) == 0){
+            printf("handling this image");
             handle_images(client_socket, buffer);
         }else {
             SEND_ERROR_404;

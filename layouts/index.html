@@ -570,7 +570,7 @@ form button:hover {
                     }catch(e){
                         console.error(e);
                     }
-                    location.reload()
+                    location.assign('/dashboard')
                 }else {
                     document.getElementById("login-error-message").innerHTML =  errorMessages[res.status]
                 }

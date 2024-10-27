@@ -57,3 +57,15 @@ void  delete_data_in_indexed_array_id (int id ,cJSON *obj_array , char *identifi
         }
     }
 }
+
+cJSON* searchById(cJSON* jsonArray, int targetId) {
+    cJSON* item = NULL;
+    cJSON_ArrayForEach(item, jsonArray) {
+        cJSON* id = cJSON_GetObjectItem(item, "id");
+        if (cJSON_IsNumber(id) && id->valueint == targetId) {
+            return item; // Return the item if the id matches targetId
+        }
+    }
+    return NULL; // Return NULL if no match found
+}
+

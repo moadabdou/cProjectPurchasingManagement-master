@@ -37,3 +37,7 @@ int generate_id();
 //indexed_array.c
 void  update_data_in_indexed_array(cJSON *obj,cJSON *obj_array , char *identifier);
 void  delete_data_in_indexed_array_id(int id ,cJSON *obj_array, char *identifier);
+cJSON* searchById(cJSON* jsonArray, int targetId);
+
+//dynamic_memory
+void append_to_string(char **buffer, const char *new_string);
