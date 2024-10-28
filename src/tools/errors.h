@@ -11,4 +11,6 @@
                         send(client_socket, error_message, strlen(error_message), 0);
 #define SEND_ERROR_400  char *error_message = "HTTP/1.1 400 \r\nContent-Length: 0\r\n\r\n";\
                         send(client_socket, error_message, strlen(error_message), 0);
+#define SEND_ERROR_403  char *error_message = "HTTP/1.1 403 \r\nContent-Length: 0\r\n\r\n";\
+                        send(client_socket, error_message, strlen(error_message), 0);
 

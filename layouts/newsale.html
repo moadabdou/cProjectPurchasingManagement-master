@@ -1,3 +1,35 @@
-<h1>
-    welcom to  new sale
-</h1>
+<div class="container mt-5">
+    <h2>Add New Sale</h2>
+    <div id="sale-message">
+
+    </div>
+    <form method="get" action="dashboard/addNewSale/" id="new_sale">
+      <!-- Sale Notes -->
+      <div class="mb-3">
+        <label for="saleNotes" class="form-label">Sale Notes</label>
+        <textarea class="form-control" id="saleNotes" rows="3" placeholder="Enter sale notes..." name="notes"></textarea>
+      </div>
+
+      <!-- Sale Products -->
+      <div id="productContainer">
+        <div class="row mb-3">
+          <div class="col-md-8">
+            <label for="productSelect1" class="form-label">Product</label>
+            <select id="productSelect1"  class="form-select" name="productSelect1" required>
+              //c_code:available_products
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="quantity1" class="form-label">Quantity</label>
+            <input type="number" value="1" class="form-control" id="quantity1" placeholder="Quantity" name="quantity">
+          </div>
+        </div>
+      </div>
+
+      <!-- Button to add more products -->
+      <button type="button" class="btn btn-secondary mb-3" id="addProductBtn">Add Another Product</button>
+
+      <!-- Submit button -->
+      <button type="submit" class="btn btn-primary d-block">Submit Sale</button>
+    </form>
+  </div>

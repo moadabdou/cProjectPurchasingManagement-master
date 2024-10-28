@@ -101,7 +101,7 @@
 		"CIN":	"yr4465656",
 		"birthdate":	"2024-10-17",
 		"id":	10018597,
-		"role":0
+		"role":	0
 	}, {
 		"name":	"ahmed",
 		"email":	"h@a.com",
@@ -147,4 +147,31 @@
 		"birthdate":	"2024-10-10",
 		"role":	0,
 		"id":	10016905
+	}, {
+		"name":	"moha",
+		"email":	"moha@h.com",
+		"password":	"sjfgvñehdgvd",
+		"phone_number":	"0762017671",
+		"CIN":	"yr4465656",
+		"birthdate":	"2024-10-17",
+		"role":	0,
+		"id":	10024174
+	}, {
+		"name":	"l7aj 3omar",
+		"email":	"l7aj@omar.com",
+		"password":	"hellomoha",
+		"phone_number":	"0674734343",
+		"CIN":	"rc73622",
+		"birthdate":	"2024-10-10",
+		"role":	0,
+		"id":	10026525
+	}, {
+		"name":	"bochta",
+		"email":	"a@gmail.com",
+		"password":	"jdñkbdhbfdf",
+		"phone_number":	"06734354545",
+		"CIN":	"rc457454",
+		"birthdate":	"2024-10-03",
+		"role":	0,
+		"id":	10028178
 	}]

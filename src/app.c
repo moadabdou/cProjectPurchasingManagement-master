@@ -102,7 +102,7 @@ int main() {
         // Handle GET or POST requests
         if (strncmp(buffer, INDEX , strlen(INDEX) ) == 0 || strncmp(buffer, DASHBOARD , strlen(DASHBOARD) ) == 0) {
 
-            if (*endptr == '\0'){
+            if (*endptr == '\0' && num_id != 0){
                 printf("\n check session : %d" , check_in_sessions(SESSIONS , num_id));
                 if (check_in_sessions(SESSIONS , num_id)){
                     dashboard_html(client_socket,buffer , num_id);
@@ -129,6 +129,7 @@ int main() {
 
         // Close the client socket after handling the request
         closesocket(client_socket);
+        printf("\n closing socket");
     }
 
     // Cleanup and close the server socket

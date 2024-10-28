@@ -72,6 +72,8 @@ void dashboard_html(SOCKET client_socket,char *buffer, int user_id) {
         
         char  *side_content, *active = "0";
         printf(">> query : %s \n" , query );
+
+
         if (strlen(query) == 0 || strlen(query) == 1){ // `` or /
             //getting sales made  by  this user
             json_file = read_file(SALES_DATAFILE, "r");
@@ -149,7 +151,44 @@ void dashboard_html(SOCKET client_socket,char *buffer, int user_id) {
             side_content = c_html_render(TASKS, NULL , 0);
         }else if(strncmp(query, "/newsale" , strlen("/newsale"))== 0){
             active = "2";
-            side_content = c_html_render(NEWSALE , NULL , 0);
+
+            //preparing product list 
+            File_prop products   = read_file(PRODUCTS_DATAFILE ,"r");
+            if(products.content == NULL){
+                    printf("\n cant open one of the files :  %s",PRODUCTS_DATAFILE);
+                    SEND_ERROR_500;
+                    return;
+                }  
+            //parsing data  
+            cJSON *products_json = cJSON_Parse(products.content);
+            free(products.content);
+
+            char *productname_list_html = NULL;
+
+            cJSON* product = NULL;
+            char template[128] = {'\0'};
+            cJSON_ArrayForEach(product, products_json) {
+                
+                sprintf(template,"<option value=\"%d\">%s</option>" , 
+                                cJSON_GetObjectItem(product, "id")->valueint,
+                                cJSON_GetObjectItem(product, "name")->valuestring);
+                append_to_string(&productname_list_html, template);
+
+            }
+
+            Props props[] = {{
+                productname_list_html == NULL  ? " ": productname_list_html ,
+                "available_products",
+                1
+            }};
+
+            side_content = c_html_render(NEWSALE , props , 1);
+
+            if (productname_list_html != NULL){
+                free(productname_list_html);
+            }
+
+
         }else if(strncmp(query, "/saleDetails" , strlen("/saleDetails"))== 0){
             active = "0";
             //getting  sale id  from  the url 
@@ -173,6 +212,9 @@ void dashboard_html(SOCKET client_socket,char *buffer, int user_id) {
                 cJSON *sales_json = cJSON_Parse(sales.content);
                 cJSON *sales_item_json = cJSON_Parse(sales_item.content);
                 cJSON *products_json = cJSON_Parse(products.content);
+                free(sales.content);
+                free(sales_item.content);
+                free(products.content);
 
                 if (sales_json == NULL || sales_item_json == NULL || products_json == NULL){
                     printf("\n cant parse data one of the files :  %s %s %s", SALE_DETAILS , SALESITEMS_DATAFILE, PRODUCTS_DATAFILE);
