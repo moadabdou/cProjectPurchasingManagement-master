@@ -304,7 +304,7 @@
             </div>
             <div class="col-md-4">
               <label for="quantity${productCount}" class="form-label">Quantity</label>
-              <input type="number" class="form-control" id="quantity${productCount}" placeholder="Quantity" name="quantity">
+              <input type="number"  min="1" value="1" class="form-control" id="quantity${productCount}" placeholder="Quantity" name="quantity">
             </div>
           `;
           productContainer.appendChild(productRow);
@@ -328,7 +328,7 @@
             
             formData.forEach((value,key)=>{
                 if (key.startsWith("product")){
-                    jsonData.products.push({product_id :  value})
+                    jsonData.products.push({product_id :  parseInt(value)})
                     current_product++
                 }else if (key == "quantity"){
                     value = Number(value)
@@ -342,7 +342,8 @@
 
             let  Messages = {
                 200 : "<p style='color:green' >seccuss</p>",
-                404 : "<p style='color:red' > data not valide </p>",
+                404 : "<p style='color:red' > data is not valide </p>",
+                400 : "<p style='color:red' > data is not valide </p>",
                 403 : "<p style='color:red' > permission denied </p>",
                 500 : "<p style='color:red' > internal  server error</p>"
             }
@@ -352,6 +353,18 @@
                 body: JSON.stringify(jsonData)
             }).then(res=> {
                 document.getElementById("sale-message").innerHTML =  Messages[res.status]
+                if(res.status == 200){
+                    res.text().then(data => {
+                        document.querySelector(".total-cost").innerHTML = `
+                        <div class="alert alert-info" role="alert">
+                            this sales registred succesfully <h3>total :${data.trim()}$</h3>
+                        </div>
+                        `
+                    })
+
+                    document.querySelector("#new_sale .submit_btn").setAttribute("disabled", true);
+
+                }
             })
         })
 

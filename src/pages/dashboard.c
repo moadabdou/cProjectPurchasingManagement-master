@@ -99,7 +99,7 @@ void dashboard_html(SOCKET client_socket,char *buffer, int user_id) {
                                     "  </div>"
                                     "  <div class=\"card-body\">"
                                     "    <p class=\"card-text\">%s</p>"
-                                    "    <p class=\"card-text\">totale cost : <strong>%.lf$</strong></p>"
+                                    "    <p class=\"card-text\">totale cost : <strong>%.2lf$</strong></p>"
                                     "    <footer class=\"blockquote-footer\">"
                                     "      %s"
                                     "    </footer>"
