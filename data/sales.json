@@ -64,4 +64,46 @@
 		"employee_id":	10018597,
 		"id":	10023657,
 		"total_cost":	19.989999771118164
+	}, {
+		"notes":	"hello",
+		"date":	"2024-10-29",
+		"employee_id":	10018597,
+		"id":	10004181,
+		"total_cost":	29.969999313354492
+	}, {
+		"notes":	"a new sale",
+		"date":	"2024-10-30",
+		"employee_id":	10016905,
+		"id":	10024537,
+		"total_cost":	192.77999877929688
+	}, {
+		"notes":	"hello there ",
+		"date":	"2024-10-31",
+		"employee_id":	10018597,
+		"id":	10017489,
+		"total_cost":	186.65998840332031
+	}, {
+		"notes":	"new sale ",
+		"date":	"2024-10-31",
+		"employee_id":	10020898,
+		"id":	10021110,
+		"total_cost":	226.63998413085938
+	}, {
+		"notes":	"this is  a new sale ",
+		"date":	"2024-11-01",
+		"employee_id":	10018597,
+		"id":	10019037,
+		"total_cost":	154.91999816894531
+	}, {
+		"notes":	"bzaaaaaf  d'atay",
+		"date":	"2024-11-01",
+		"employee_id":	10018597,
+		"id":	10023191,
+		"total_cost":	199
+	}, {
+		"notes":	"sabat  dryada",
+		"date":	"2024-11-01",
+		"employee_id":	10028178,
+		"id":	10026365,
+		"total_cost":	17196.560546875
 	}]

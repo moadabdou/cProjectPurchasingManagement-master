@@ -104,13 +104,15 @@ void dashboard_html(SOCKET client_socket,char *buffer, int user_id) {
                                     "      %s"
                                     "    </footer>"
                                     "    <a href=\"/dashboard/saleDetails/%d\" class=\"btn btn-primary\">more details</a>"
+                                    "    <a href=\"/dashboard/sales/remove/%d\" class=\"btn btn-warning\">cancel</a>"
                                     "  </div>"
                                     "</div>";
             char  *sales_list = NULL;
 
             // Iterate over JSON array
             cJSON *item;
-            cJSON_ArrayForEach(item, sales_data) {
+            for(int i= cJSON_GetArraySize(sales_data) - 1;  i > -1 ;  i--){
+                item = cJSON_GetArrayItem(sales_data, i);
                 cJSON *id = cJSON_GetObjectItem(item, "employee_id");
                 if (cJSON_IsNumber(id) && id->valueint == user_id) {
                     cJSON *sale_id = cJSON_GetObjectItem(item, "id"); 
@@ -119,7 +121,7 @@ void dashboard_html(SOCKET client_socket,char *buffer, int user_id) {
                     cJSON *total_cost = cJSON_GetObjectItem(item, "total_cost"); 
                     if (cJSON_IsString(date) && cJSON_IsString(notes) && cJSON_IsNumber(total_cost)) {
         
-                        char template[512] = {'\0'};
+                        char template[1024] = {'\0'};
                         
                         sprintf(template, sale_html_item ,   sale_id->valueint,
                                                              notes->valuestring,

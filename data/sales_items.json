@@ -70,4 +70,55 @@
 				"product_id":	103,
 				"quantity":	1
 			}]
+	}, {
+		"sale_id":	10004181,
+		"products":	[{
+				"product_id":	102,
+				"quantity":	3
+			}]
+	}, {
+		"sale_id":	10024537,
+		"products":	[{
+				"product_id":	103,
+				"quantity":	3
+			}, {
+				"product_id":	107,
+				"quantity":	19
+			}]
+	}, {
+		"sale_id":	10017489,
+		"products":	[{
+				"product_id":	105,
+				"quantity":	34
+			}]
+	}, {
+		"sale_id":	10021110,
+		"products":	[{
+				"product_id":	103,
+				"quantity":	2
+			}, {
+				"product_id":	105,
+				"quantity":	34
+			}]
+	}, {
+		"sale_id":	10019037,
+		"products":	[{
+				"product_id":	101,
+				"quantity":	3
+			}, {
+				"product_id":	104,
+				"quantity":	5
+			}]
+	}, {
+		"sale_id":	10023191,
+		"products":	[{
+				"product_id":	110,
+				"quantity":	100
+			}]
+	}, {
+		"sale_id":	10026365,
+		"products":	[{
+				"product_id":	108,
+				"quantity":	344
+			}]
 	}]

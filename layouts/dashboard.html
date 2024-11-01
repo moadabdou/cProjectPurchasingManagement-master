@@ -38,9 +38,9 @@
         }
 
         .main {
-            min-height: 100vh;
+            height: calc(100vh - 120px);
             width: 100%;
-            overflow: hidden;
+            overflow: scroll;
             transition: all 0.35s ease-in-out;
             background-color: #fafbfe;
         }
@@ -216,25 +216,19 @@
                     <li class="sidebar-item">
                         <a href="/dashboard" class="sidebar-link">
                             <i class="lni lni-user"></i>
-                            <span>Profile</span>
+                            <span>Sales</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
                         <a href="/dashboard/tasks" class="sidebar-link">
                             <i class="lni lni-agenda"></i>
-                            <span>Tasks</span>
+                            <span>Insights</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
                         <a href="/dashboard/newsale" class="sidebar-link">
                             <i class="lni lni-popup"></i>
                             <span>new sale</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="/dashboard/Setting" class="sidebar-link">
-                            <i class="lni lni-cog"></i>
-                            <span>Setting</span>
                         </a>
                     </li>
                 </ul>
