@@ -269,6 +269,19 @@
             })
         }
     </script>
+    <script> 
+        document.querySelectorAll(".removeSale").forEach(el=> {
+            el.addEventListener("click", event => {
+                const id =  event.target.getAttribute("data-saleid")
+                fetch("/api/sales/remove/"+id ,{
+                    method : "POST", 
+                    body : ""
+                }).then(res=>{
+                    console.log(res.status)
+                })
+            })
+        })
+    </script>
      <script>
         let productCount = 1;
     

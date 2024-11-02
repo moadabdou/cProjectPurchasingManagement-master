@@ -6,12 +6,13 @@
 #include "../tools/tools.h"
 #include "../tools/errors.h"
 #include "../tools/cJSON.h"
-
+#include "../pages/pages.h"
 
 #define SALES_DATAFILE "./data/sales.json"
 #define SALESITEMS_DATAFILE "./data/sales_items.json"
 #define PRODUCTS_DATAFILE "./data/products.json"
 #define NEW  "/new"
+#define REMOVE "/remove"
 
 void handel_sales_api(SOCKET client_socket, char *query , char *body, Sessions SESSIONS, int user_id){
     File_prop json_file;
@@ -132,6 +133,17 @@ void handel_sales_api(SOCKET client_socket, char *query , char *body, Sessions S
         char response[64];
         sprintf(response , "HTTP/1.1 200 OK\r\nContent-Length: 10\r\n\r\n%10.2lf", total_cost);
         send(client_socket, response, strlen(response), 0);
+
+    }else if(strncmp(query , REMOVE ,  strlen(REMOVE)) == 0){
+
+        printf("\n >>>> [deleting  a sale] query :%s ", query);
+        //delete the sale based on the data comming from the  query [sale id] (dont forget  to  handel  errors)
+        // data located  in SALESITEMS_DATAFILE and SALES_DATAFILE const 
+        // for error  handeling use SEND_ERROR preprocessors 
+        
+        //when  deleting  is  successful  send  a 200 OK
+        char responce[64] = "HTTP/1.1 200 OK";
+        send(client_socket, responce, strlen(responce), 0);
 
     }else{
         SEND_ERROR_404_API;

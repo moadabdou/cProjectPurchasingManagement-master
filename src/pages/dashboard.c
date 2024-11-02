@@ -104,7 +104,7 @@ void dashboard_html(SOCKET client_socket,char *buffer, int user_id) {
                                     "      %s"
                                     "    </footer>"
                                     "    <a href=\"/dashboard/saleDetails/%d\" class=\"btn btn-primary\">more details</a>"
-                                    "    <a href=\"/dashboard/sales/remove/%d\" class=\"btn btn-warning\">cancel</a>"
+                                    "    <button class=\"btn btn-warning removeSale\" data-saleid=\"%d\" >cancel</button>"
                                     "  </div>"
                                     "</div>";
             char  *sales_list = NULL;
@@ -127,6 +127,7 @@ void dashboard_html(SOCKET client_socket,char *buffer, int user_id) {
                                                              notes->valuestring,
                                                              total_cost->valuedouble,
                                                              date->valuestring,
+                                                             sale_id->valueint,
                                                              sale_id->valueint);
 
                         append_to_string(&sales_list, template);
