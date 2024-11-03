@@ -12,7 +12,7 @@ char *c_html_render(char *src, Props *props, int props_length) {
     }
 
     char *rendered_output;
-    char line[2048], *pos_index, *type, error[64], change_state; 
+    char line[2048], *pos_index, *type, change_state; 
     const char *TAG_CODE = "//c_code:";
     long r_length;
 
@@ -57,9 +57,8 @@ char *c_html_render(char *src, Props *props, int props_length) {
                 }
             }
             if (!change_state) {
-                sprintf(error, "UNDEFINED TAG %s\n", type);
-                strcpy(rendered_output + offset, error);
-                offset += strlen(error);
+                strcpy(rendered_output + offset, line); //this to make it possible to  render  in steps/stages
+                offset += strlen(line);
             }
         }
     }

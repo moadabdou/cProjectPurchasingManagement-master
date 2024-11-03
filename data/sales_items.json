@@ -184,4 +184,19 @@
 				"product_id":	110,
 				"quantity":	100
 			}]
+	}, {
+		"sale_id":	10001268,
+		"products":	[{
+				"product_id":	107,
+				"quantity":	444
+			}]
+	}, {
+		"sale_id":	10021900,
+		"products":	[{
+				"product_id":	110,
+				"quantity":	10
+			}, {
+				"product_id":	104,
+				"quantity":	3
+			}]
 	}]

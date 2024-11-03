@@ -1,0 +1,27 @@
+
+<div class="sales-container">
+    <h1>
+        welcom to sales section 
+    </h1>
+    
+    <div class="dropdown-center mb-5">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          choose an employeer
+        </button>
+        <ul class="dropdown-menu">
+          //c_code:employeers_drop_down
+        </ul>
+    </div>
+        
+    <ul>
+        //c_code:sales_list
+    </ul>
+</div>
+
+<script>
+
+  document.querySelector(".dropdown-toggle").addEventListener("click", event => {
+    document.querySelector(".dropdown-menu").classList.toggle("show")
+  })
+
+</script>

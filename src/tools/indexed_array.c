@@ -1,5 +1,6 @@
 #include "./cJSON.h"
 #include <stdio.h>
+#include <string.h>
 #include "tools.h"
 
 void  update_data_in_indexed_array(cJSON *obj,cJSON *obj_array, char *identifier){
@@ -79,6 +80,35 @@ cJSON* searchById_cutomized(cJSON* jsonArray, int targetId, char *id_tag) {
         }
     }
     return NULL; // Return NULL if no match found
+}
+
+
+//occurence  of an id 
+// Define a struct to store each element and its occurrence count
+
+void countOccurrencesById(cJSON *array, char *id_tag, ElementCount result[], int *resultSize) {
+
+    *resultSize = 0;  
+
+
+    for (int i = 0; i < cJSON_GetArraySize(array) ; i++) {
+        int found = 0;
+        cJSON *elm =  cJSON_GetArrayItem(array, i);
+        
+        for (int j = 0; j < *resultSize; j++) {
+            if (result[j].id == cJSON_GetObjectItem(elm, id_tag)->valueint) {
+                result[j].count++;  
+                found = 1;
+                break;
+            }
+        }
+
+        if (!found) {
+            result[*resultSize].id = cJSON_GetObjectItem(elm, id_tag)->valueint;
+            result[*resultSize].count = 1;
+            (*resultSize)++;
+        }
+    }
 }
 
 
