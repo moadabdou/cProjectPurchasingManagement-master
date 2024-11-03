@@ -89,11 +89,6 @@
 		"birthdate":	"1996-04-22",
 		"name":	"Ivy Clark"
 	}, {
-		"email":	"a@a.com",
-		"cin":	"RC123",
-		"name":	"ahmed",
-		"id":	10013995
-	}, {
 		"name":	"ahmed",
 		"email":	"h@h.com",
 		"password":	"sjfgvñehdgvd",
@@ -183,4 +178,13 @@
 		"birthdate":	"2024-10-11",
 		"role":	0,
 		"id":	10020898
+	}, {
+		"name":	"saad boussof",
+		"email":	"qirudjb@h.com",
+		"password":	"dfnjdlgjd",
+		"phone_number":	"06548458485",
+		"CIN":	"yr4465656",
+		"birthdate":	"2024-11-15",
+		"role":	0,
+		"id":	10024973
 	}]

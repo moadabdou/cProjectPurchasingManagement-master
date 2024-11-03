@@ -106,4 +106,46 @@
 		"employee_id":	10028178,
 		"id":	10026365,
 		"total_cost":	17196.560546875
+	}, {
+		"notes":	"atay b sukar o lwiza",
+		"date":	"2024-11-02",
+		"employee_id":	10024973,
+		"id":	10025120,
+		"total_cost":	8356.8994140625
+	}, {
+		"notes":	"hello dear ",
+		"date":	"2024-11-02",
+		"employee_id":	10018597,
+		"id":	10029025,
+		"total_cost":	559.97998046875
+	}, {
+		"notes":	"hello there",
+		"date":	"2024-11-03",
+		"employee_id":	10018597,
+		"id":	10027491,
+		"total_cost":	60.389999389648438
+	}, {
+		"notes":	"new sale sunday",
+		"date":	"2024-11-03",
+		"employee_id":	10016905,
+		"id":	10022099,
+		"total_cost":	333.6199951171875
+	}, {
+		"notes":	"hello  there  this is  new sale",
+		"date":	"2024-11-03",
+		"employee_id":	10018597,
+		"id":	10030576,
+		"total_cost":	59.700000762939453
+	}, {
+		"notes":	"this new sale",
+		"date":	"2024-11-03",
+		"employee_id":	10018597,
+		"id":	10004463,
+		"total_cost":	171.83000183105469
+	}, {
+		"notes":	"ataaaaaaaaaaaaay",
+		"date":	"2024-11-03",
+		"employee_id":	10024973,
+		"id":	10006050,
+		"total_cost":	199
 	}]

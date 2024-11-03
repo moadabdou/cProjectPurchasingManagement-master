@@ -4,9 +4,5 @@ a small project  for  purchasing  management ,  using an http  server  in c lang
 
 
 # to do : next  week
- - adding cancel operation for  sales  
- - finishing up  the **add new sale** section :  [done]
-    > calculing the  total  cost  and  send it  back to the client    
-    > saving  the new data to the data files 
- - setting up  the admin controle panel 
+ - starting up  the  admin  dashboard 
  

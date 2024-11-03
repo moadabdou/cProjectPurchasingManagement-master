@@ -59,8 +59,7 @@ void handel_sales_api(SOCKET client_socket, char *query , char *body, Sessions S
         }
 
         char current_date[15] ;
-        time_t now = time(NULL);
-        struct tm *t = localtime(&now);
+        struct tm *t = get_current_date();
 
         // Print date in YYYY-MM-DD format
         sprintf( current_date ,"%d-%02d-%02d", t->tm_year + 1900, t->tm_mon + 1, t->tm_mday);

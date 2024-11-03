@@ -43,3 +43,8 @@ cJSON* searchById_cutomized(cJSON* jsonArray, int targetId, char *id_tag);
 
 //dynamic_memory
 void append_to_string(char **buffer, const char *new_string);
+
+
+//date_calculations  
+int days_between_dates(int year, int month, int day);
+struct tm* get_current_date();
