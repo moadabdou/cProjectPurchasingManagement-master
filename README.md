@@ -3,7 +3,6 @@ a small project  for  purchasing  management ,  using an http  server  in c lang
 
 
 
-# to do : today
- -add suspend and active  functionalities
- -prevent  suspended  users from  log in 
+# to do : next week
+ -cancel sales 
  
