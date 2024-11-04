@@ -107,7 +107,7 @@ void handel_employee_api(SOCKET client_socket, char *query , char *body, Session
         }
         
         cJSON_AddNumberToObject( client_data  ,"role" , 0);
-
+        cJSON_AddNumberToObject( client_data  ,"state" , 0);
         if (check_email_validity(json_data, client_data)){
             update_data_in_indexed_array(client_data , json_data , DATAFILE);
         }else {

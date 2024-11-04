@@ -269,15 +269,10 @@ void dashboard_html(SOCKET client_socket,char *buffer, int user_id) {
 
 
         if (strlen(query) == 0 || strlen(query) == 1){ // `` or /
-             char *sale_list= getSalesMadeBy(user_id);
-            if (sale_list == NULL){
-                printf("\n>> cant  get  sales of this user");
-                SEND_ERROR_500;
-                return;
-            }
+            char *sale_list= getSalesMadeBy(user_id);
 
             side_content =  c_html_render(SALES_LIST, (Props[]){{
-                sale_list,
+                sale_list == NULL ?  " no sales " : sale_list,
                 "sales_list",
                 1
             }},1);

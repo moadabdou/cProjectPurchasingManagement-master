@@ -15,7 +15,7 @@
 		"CIN":	"B2345678",
 		"phone_number":	"+1987654321",
 		"role":	0,
-		"state":	0,
+		"state":	1,
 		"birthdate":	"1985-05-15",
 		"name":	"Jane Smith"
 	}, {
@@ -25,7 +25,7 @@
 		"CIN":	"C3456789",
 		"phone_number":	"+1231231234",
 		"role":	0,
-		"state":	0,
+		"state":	1,
 		"birthdate":	"1992-07-20",
 		"name":	"Bob Johnson"
 	}, {
@@ -208,4 +208,14 @@
 		"role":	0,
 		"state":	0,
 		"id":	10024973
+	}, {
+		"name":	"bojm3a ",
+		"email":	"bojm3a@email.com",
+		"password":	"password123",
+		"phone_number":	"07620176444",
+		"CIN":	"RC43656",
+		"birthdate":	"2005-10-27",
+		"role":	0,
+		"state":	1,
+		"id":	10009437
 	}]
