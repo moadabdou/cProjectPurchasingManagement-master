@@ -166,4 +166,10 @@
 		"employee_id":	10028178,
 		"id":	10004019,
 		"total_cost":	298.76998901367188
+	}, {
+		"notes":	"hello new sale",
+		"date":	"2024-11-04",
+		"employee_id":	10018597,
+		"id":	10017997,
+		"total_cost":	92.909996032714844
 	}]

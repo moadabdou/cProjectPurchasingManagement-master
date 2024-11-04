@@ -19,9 +19,18 @@
 </div>
 
 <script>
-
   document.querySelector(".dropdown-toggle").addEventListener("click", event => {
     document.querySelector(".dropdown-menu").classList.toggle("show")
   })
-
+  document.querySelectorAll(".removeSale").forEach(el=> {
+            el.addEventListener("click", event => {
+                const id =  event.target.getAttribute("data-saleid")
+                fetch("/api/sales/remove/"+id ,{
+                    method : "POST", 
+                    body : ""
+                }).then(res=>{
+                    console.log(res.status)
+                })
+            })
+        })
 </script>

@@ -11,7 +11,7 @@
 #define GET  "/get"
 #define AUTH  "/auth"
 #define NEW  "/new"
-#define DELET "/delete" //delete  already  used 
+#define SUSPEND "/suspend" //delete  already  used 
 #define LOGOUT "/logout"
 
 char  check_email_validity(cJSON *json_data , cJSON *client_json){
@@ -150,6 +150,13 @@ void handel_employee_api(SOCKET client_socket, char *query , char *body, Session
             SEND_ERROR_400;
             return;
         }
+        cJSON *state = cJSON_GetObjectItem(response_validity , "state");
+        if (state == NULL || state->valueint == 0){
+            printf("\n users  account  suspended");
+            SEND_ERROR_403;
+            return;
+        }
+
         cJSON *id =  cJSON_GetObjectItem(response_validity , "id");
         if (id == NULL || open_session(SESSIONS,id->valueint) == 0){
             printf("\n Can't open session ");
@@ -162,7 +169,7 @@ void handel_employee_api(SOCKET client_socket, char *query , char *body, Session
         send(client_socket, response, strlen(response), 0);
         send(client_socket, cJSON_Print(response_validity), strlen(cJSON_Print(response_validity)), 0);
 
-    }else if(strncmp(query , DELET ,  strlen(DELET)) == 0){  
+    }else if(strncmp(query , SUSPEND ,  strlen(SUSPEND)) == 0){  
         json_file = read_file(DATAFILE, "r");
         
         if (json_file.content == NULL || body  == NULL) {
@@ -181,9 +188,20 @@ void handel_employee_api(SOCKET client_socket, char *query , char *body, Session
             return;
         }
 
-        cJSON *id =  cJSON_GetObjectItem(client_data , "id");
-        if (id != NULL){
-            delete_data_in_indexed_array_id(id->valueint , json_data , DATAFILE);
+        cJSON *target_id =  cJSON_GetObjectItem(client_data , "id");
+        cJSON *option =  cJSON_GetObjectItem(client_data , "option");
+        if (target_id != NULL && option != NULL){
+            for (int i= 0;  i <  cJSON_GetArraySize(json_data) ; i++ ){
+                cJSON *employeer = cJSON_GetArrayItem(json_data, i);
+                cJSON *emp_id =  cJSON_GetObjectItem( employeer, "id");
+                if (emp_id->valueint == target_id->valueint){
+                    cJSON *state = cJSON_GetObjectItem(employeer, "state");
+                    cJSON_SetNumberValue(state , option->valueint);
+                }
+            }
+        }else {
+            SEND_ERROR_400;
+            return;
         }
 
         write_file(DATAFILE , cJSON_Print(json_data), "w");

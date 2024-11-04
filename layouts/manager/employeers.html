@@ -1,6 +1,43 @@
+<div class="alert alert-warning alert-dismissible fade d-none" role="alert">
+    <strong>Oops !</strong> cant suspend this employeer
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
 <h1>
     these the  employeers are working here  currently 
 </h1>
 <div class="users-container container">
     //c_code:employeers_list
 </div>
+<script>
+    const  alert_el = document.querySelector('.alert-warning');
+    document.querySelectorAll(".users-container .card .btn").forEach(btn=> {
+        btn.addEventListener("click" , function(event){
+            const option  = this.textContent == "Active" ? 1 : 0;
+            const id = Number(this.parentElement
+                                .firstElementChild
+                                .textContent
+                                .match(/id: #(\d+)/)[1])
+            fetch("/api/employees/suspend", {
+                method : "POST", 
+                body : `{
+                    "option": ${option},
+                    "id" : ${id} 
+                }`
+            }).then(res=>{
+                if (res.status == 200){
+                    this.textContent = option == 0 ? "Active" : "Suspend"
+                    if (option == 0){
+                        this.classList.remove("btn-warning")
+                        this.classList.add("btn-success")
+                    }else{
+                        this.classList.remove("btn-success")
+                        this.classList.add("btn-warning")
+                    }
+                }else {
+                    alertel.classList.remove("d-none");
+                    alertel.classList.add("show")
+                }       
+            })
+        })
+    })
+</script>

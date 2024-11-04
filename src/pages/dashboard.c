@@ -269,12 +269,18 @@ void dashboard_html(SOCKET client_socket,char *buffer, int user_id) {
 
 
         if (strlen(query) == 0 || strlen(query) == 1){ // `` or /
-            side_content = getSalesMadeBy(user_id);
-            if (side_content == NULL){
+             char *sale_list= getSalesMadeBy(user_id);
+            if (sale_list == NULL){
                 printf("\n>> cant  get  sales of this user");
                 SEND_ERROR_500;
                 return;
             }
+
+            side_content =  c_html_render(SALES_LIST, (Props[]){{
+                sale_list,
+                "sales_list",
+                1
+            }},1);
 
         }else if(strncmp(query, "/insights" , strlen("/insights"))== 0){
             active = "1";

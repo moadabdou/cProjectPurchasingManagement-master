@@ -205,4 +205,16 @@
 				"product_id":	104,
 				"quantity":	23
 			}]
+	}, {
+		"sale_id":	10017997,
+		"products":	[{
+				"product_id":	100,
+				"quantity":	1
+			}, {
+				"product_id":	106,
+				"quantity":	3
+			}, {
+				"product_id":	104,
+				"quantity":	5
+			}]
 	}]
