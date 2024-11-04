@@ -458,7 +458,7 @@ form button:hover {
                         <label>CIN</label>
                     </div>
                     <div class="input-field">
-                        <input name="birthdate" type="date" value="0">
+                        <input name="birthdate" id="datefield" type="date" value="0" min="1950-01-31" max="2005-12-01">
                         <label>birth date</label>
                     </div>
                     <button type="submit">Sign Up</button>
@@ -473,6 +473,7 @@ form button:hover {
 
     <script>
         history.replaceState(null, '', '/');
+
 
         function setCookie(cname, cvalue, exdays) {
             const d = new Date();

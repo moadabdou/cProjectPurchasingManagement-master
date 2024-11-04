@@ -160,4 +160,10 @@
 		"employee_id":	10018597,
 		"id":	10021900,
 		"total_cost":	58.870002746582031
+	}, {
+		"notes":	"hey  this is new sale from  bochta",
+		"date":	"2024-11-04",
+		"employee_id":	10028178,
+		"id":	10004019,
+		"total_cost":	298.76998901367188
 	}]

@@ -42,9 +42,10 @@ cJSON* searchById_cutomized(cJSON* jsonArray, int targetId, char *id_tag);
 
 typedef struct {
     int id;
+    float accumulate;
     int count;
 } ElementCount;
-void countOccurrencesById(cJSON *array, char *id_tag, ElementCount result[], int *resultSize) ;
+void countOccurrencesById_accumulate(cJSON *array, char *id_tag, char *accumulate, ElementCount result[], int *resultSize);
 
 //dynamic_memory
 void append_to_string(char **buffer, const char *new_string);

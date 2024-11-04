@@ -38,7 +38,8 @@
       max-height: 100%;
       max-width: 100%;
     }
-    #salesChart-contributions {
+    #salesChart-contributions,
+    #salesChart-contributions-byrevenue {
         width: 400px !important;
         height: 400px !important;
     }
@@ -71,12 +72,24 @@
         </div>
     </div>
     <div class="row mt-3">
-        <div class="card">
-            <div class="card-body">
-              <h5 class="card-title text-center">employeers contributions</h5>
-              <div class="chart-container">
-                  <canvas id="salesChart-contributions" ></canvas>
-              </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title text-center">employeers contributions</h5>
+                  <div class="chart-container">
+                      <canvas id="salesChart-contributions" ></canvas>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title text-center">employeers contributions by  revenue</h5>
+                  <div class="chart-container">
+                        <canvas id="salesChart-contributions-byrevenue" width="400" height="300"></canvas>
+                  </div>
+                </div>
             </div>
         </div>
     </div>
@@ -220,7 +233,39 @@
                             ]; 
                             let label = labels[context.dataIndex] || '';
                             let value = context.raw;
-                            return label.trim() + ': ' + value; 
+                            return label.trim() + ': ' + value ; 
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    const ctx3 = document.getElementById('salesChart-contributions-byrevenue').getContext('2d');
+    const salesChart_contributions_byRevenue = new Chart(ctx3, {
+    type: 'doughnut',
+    data: {
+        datasets: [{
+            label: 'My First Dataset',
+            data: [
+                //c_code:cont_revenue
+            ],
+            backgroundColor: [
+                //c_code:colors
+            ]
+        }]
+    },
+    options: {
+        plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let labels = [
+                                //c_code:cont_labels
+                            ]; 
+                            let label = labels[context.dataIndex] || '';
+                            let value = context.raw;
+                            return label.trim() + ': ' + value +'$'; 
                         }
                     }
                 }

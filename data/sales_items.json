@@ -199,4 +199,10 @@
 				"product_id":	104,
 				"quantity":	3
 			}]
+	}, {
+		"sale_id":	10004019,
+		"products":	[{
+				"product_id":	104,
+				"quantity":	23
+			}]
 	}]

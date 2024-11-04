@@ -14,6 +14,7 @@
 		"CIN":	"B2345678",
 		"phone_number":	"+1987654321",
 		"role":	0,
+		"state" : 1, 
 		"birthdate":	"1985-05-15",
 		"name":	"Jane Smith"
 	}, {
@@ -23,6 +24,7 @@
 		"CIN":	"C3456789",
 		"phone_number":	"+1231231234",
 		"role":	0,
+		"state" : 1, 
 		"birthdate":	"1992-07-20",
 		"name":	"Bob Johnson"
 	}, {
@@ -32,6 +34,7 @@
 		"CIN":	"D4567890",
 		"phone_number":	"+3213213210",
 		"role":	0,
+		"state" : 0, 
 		"birthdate":	"1995-03-10",
 		"name":	"Alice Williams"
 	}, {
@@ -41,6 +44,7 @@
 		"CIN":	"E5678901",
 		"phone_number":	"+1472583690",
 		"role":	0,
+		"state" : 1, 
 		"birthdate":	"1998-09-25",
 		"name":	"Chris Brown"
 	}, {
@@ -50,6 +54,7 @@
 		"CIN":	"F6789012",
 		"phone_number":	"+9638527410",
 		"role":	0,
+		"state" : 1, 
 		"birthdate":	"1989-11-05",
 		"name":	"David Green"
 	}, {
@@ -59,6 +64,7 @@
 		"CIN":	"G7890123",
 		"phone_number":	"+6549873210",
 		"role":	0,
+		"state" : 1, 
 		"birthdate":	"1991-12-12",
 		"name":	"Ella Thompson"
 	}, {
@@ -68,6 +74,7 @@
 		"CIN":	"H8901234",
 		"phone_number":	"+3216549870",
 		"role":	0,
+		"state" : 1, 
 		"birthdate":	"1993-08-08",
 		"name":	"George White"
 	}, {
@@ -77,6 +84,7 @@
 		"CIN":	"I9012345",
 		"phone_number":	"+2583691470",
 		"role":	0,
+		"state" : 1, 
 		"birthdate":	"1987-02-18",
 		"name":	"Helen Black"
 	}, {
@@ -86,6 +94,7 @@
 		"CIN":	"J1234568",
 		"phone_number":	"+7418529630",
 		"role":	0,
+		"state" : 1, 
 		"birthdate":	"1996-04-22",
 		"name":	"Ivy Clark"
 	}, {
@@ -96,7 +105,8 @@
 		"CIN":	"yr4465656",
 		"birthdate":	"2024-10-17",
 		"id":	10018597,
-		"role":	0
+		"role":	0,
+		"state" : 1
 	}, {
 		"name":	"ahmed",
 		"email":	"h@a.com",
@@ -105,6 +115,7 @@
 		"CIN":	"yr4465656",
 		"birthdate":	"2024-10-17",
 		"role":	0,
+		"state" : 1, 
 		"id":	10018878
 	}, {
 		"name":	"omar ",
@@ -114,6 +125,7 @@
 		"CIN":	"RC43656",
 		"birthdate":	"2024-10-17",
 		"role":	0,
+		"state" : 1, 
 		"id":	10008005
 	}, {
 		"name":	"moad elabdellaoui",
@@ -123,6 +135,7 @@
 		"CIN":	"RC43656",
 		"birthdate":	"2002-12-24",
 		"role":	0,
+		"state" : 1, 
 		"id":	10021413
 	}, {
 		"name":	"moad el abdellaoui",
@@ -132,6 +145,7 @@
 		"CIN":	"RC43656",
 		"birthdate":	"2024-10-10",
 		"role":	0,
+		"state" : 1, 
 		"id":	10014026
 	}, {
 		"name":	"moad el abdellaoui🩻🩻🩻",
@@ -141,6 +155,7 @@
 		"CIN":	"RC43656",
 		"birthdate":	"2024-10-10",
 		"role":	0,
+		"state" : 1, 
 		"id":	10016905
 	}, {
 		"name":	"moha",
@@ -150,6 +165,7 @@
 		"CIN":	"yr4465656",
 		"birthdate":	"2024-10-17",
 		"role":	0,
+		"state" : 1, 
 		"id":	10024174
 	}, {
 		"name":	"l7aj 3omar",
@@ -159,6 +175,7 @@
 		"CIN":	"rc73622",
 		"birthdate":	"2024-10-10",
 		"role":	0,
+		"state" : 1, 
 		"id":	10026525
 	}, {
 		"name":	"bochta",
@@ -168,6 +185,7 @@
 		"CIN":	"rc457454",
 		"birthdate":	"2024-10-03",
 		"role":	0,
+		"state" : 1, 
 		"id":	10028178
 	}, {
 		"name":	"ñdfkgdfd",
@@ -177,6 +195,7 @@
 		"CIN":	"yr4465656",
 		"birthdate":	"2024-10-11",
 		"role":	0,
+		"state" : 1, 
 		"id":	10020898
 	}, {
 		"name":	"saad boussof",
@@ -186,5 +205,6 @@
 		"CIN":	"yr4465656",
 		"birthdate":	"2024-11-15",
 		"role":	0,
+		"state" : 1, 
 		"id":	10024973
 	}]

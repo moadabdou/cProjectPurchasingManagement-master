@@ -24,6 +24,8 @@
 #define HTML_FILE_MANAGER "./layouts/manager/dashboard.html"
 #define SALES_LIST_MANAGER "./layouts/manager/sales_list.html"
 #define INSIGHTS_MANAGER      "./layouts/manager/insights.html"
+#define EMPLOYEERS_MANAGER  "./layouts/manager/employeers.html"
+
 
 
 //data
@@ -571,16 +573,18 @@ void dashboard_html(SOCKET client_socket,char *buffer, int user_id) {
             ElementCount occurenceCount[cJSON_GetArraySize(sales_json)];
             int Occurence_Size ;
 
-            countOccurrencesById(sales_json , "employee_id", occurenceCount , &Occurence_Size);
+            countOccurrencesById_accumulate(sales_json , "employee_id","total_cost",occurenceCount, &Occurence_Size);
 
             //convert to  string
             char *occurence_colors = (char*)malloc(Occurence_Size * 30 + 1); // 'rgb(244, 123, 100),' == 22bytes
             char *occurence_name_id = (char*)malloc(Occurence_Size * 64 + 1); // 'name#id' <= 50 bytes
             char *occurence_data = (char*)malloc(Occurence_Size * 7 + 1); // NNNNNN, <= 7 bytes
+            char *occurence_revenue_data = (char*)malloc(Occurence_Size * 7 + 1);
 
             for(int i= 0; i < Occurence_Size ; i++){
 
                 sprintf(occurence_data + i*7, "%6d,", occurenceCount[i].count);
+                sprintf(occurence_revenue_data + i*7, "%6.0f,", occurenceCount[i].accumulate);
                 sprintf(occurence_colors + i*30 ,"%30s", my_colors[i]);
                 cJSON *employeer = searchById(employeers_json, occurenceCount[i].id);
                 sprintf(occurence_name_id + i*64 ,"'%52s#%8d',", cJSON_GetObjectItem(employeer, "name")->valuestring ,  occurenceCount[i].id);
@@ -618,15 +622,19 @@ void dashboard_html(SOCKET client_socket,char *buffer, int user_id) {
             },{
                 occurence_colors,
                 "colors",
-                1
+                2
             },{
                 occurence_data,
                 "contributions",
                 1
             },{
+                occurence_revenue_data,
+                "cont_revenue",
+                1
+            },{
                 occurence_name_id,
                 "cont_labels",
-                1
+                2
             },{
                 week_sales_string,
                 "total_weeksales_revenue",
@@ -648,7 +656,70 @@ void dashboard_html(SOCKET client_socket,char *buffer, int user_id) {
             free(occurence_colors);
             free(occurence_name_id);
             free(occurence_data);
+            free(occurence_revenue_data);
 
+        }else if(strncmp(query, "/employeers" , strlen("/employeers"))== 0){
+            active = "2"; 
+            //getting  data  files 
+            File_prop employeers = read_file(EMPLOYEES_DATAFILE ,"r");
+
+            if(employeers.content == NULL){
+                printf("\n cant open one of the files :  %s ", EMPLOYEES_DATAFILE);
+                SEND_ERROR_500;
+                return;
+            } 
+            //parsing data  
+            cJSON *employeers_json = cJSON_Parse(employeers.content);
+            free(employeers.content);
+
+            if (!employeers_json || !cJSON_IsArray(employeers_json)) {
+                printf("Error parsing JSON or not an array.\n");
+                SEND_ERROR_500;
+                return;
+            }
+            const char *employeer_template = 
+                            "<div class=\"card mt-3\">"
+                                "<div class=\"card-header\">"
+                                    " %s "
+                                "</div>"
+                                "<div class=\"card-body\">"
+                                    "<h5 class=\"card-title\">id: #%d</h5>"
+                                    "<p class=\"card-text\">email : %s</p>"
+                                    "<p class=\"card-text\">CIN : %s</p>"
+                                    "<p class=\"card-text\">phone number : %s</p>"
+                                    "<p class=\"card-text\">birth date : %s</p>"
+                                    "%s"
+                                "</div>"
+                            "</div>";
+            char *employeers_list = NULL;
+            char emp_tmp[512] = {0,};
+
+            for (int i = 0;  i <  cJSON_GetArraySize(employeers_json); i++){
+                cJSON *employeer =  cJSON_GetArrayItem(employeers_json, i);
+                if (cJSON_GetObjectItem(employeer ,"role")->valueint != 1){ //not  manager
+                    sprintf(emp_tmp, employeer_template,
+                        cJSON_GetObjectItem(employeer ,"name")->valuestring,
+                        cJSON_GetObjectItem(employeer ,"id")->valueint,
+                        cJSON_GetObjectItem(employeer ,"email")->valuestring,
+                        cJSON_GetObjectItem(employeer ,"CIN")->valuestring,
+                        cJSON_GetObjectItem(employeer ,"phone_number")->valuestring,
+                        cJSON_GetObjectItem(employeer ,"birthdate")->valuestring,
+                        cJSON_GetObjectItem(employeer ,"state")->valueint ? 
+                            "<a class=\"btn btn-warning\">Suspend</a>" : "<a class=\"btn btn-success\">Active</a>"
+                    );
+                    append_to_string(&employeers_list, emp_tmp);
+                }
+            }
+            
+            side_content = c_html_render(EMPLOYEERS_MANAGER, (Props []){{
+                employeers_list,
+                "employeers_list",
+                1
+            }} , 1);
+
+            if (employeers_list != NULL){
+                free(employeers_list);
+            }
         }else {
             active = "a";
             side_content = c_html_render(NOT_FOUND, NULL , 0);

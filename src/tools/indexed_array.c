@@ -84,9 +84,8 @@ cJSON* searchById_cutomized(cJSON* jsonArray, int targetId, char *id_tag) {
 
 
 //occurence  of an id 
-// Define a struct to store each element and its occurrence count
 
-void countOccurrencesById(cJSON *array, char *id_tag, ElementCount result[], int *resultSize) {
+void countOccurrencesById_accumulate(cJSON *array, char *id_tag, char *accumulate, ElementCount result[], int *resultSize) {
 
     *resultSize = 0;  
 
@@ -97,7 +96,8 @@ void countOccurrencesById(cJSON *array, char *id_tag, ElementCount result[], int
         
         for (int j = 0; j < *resultSize; j++) {
             if (result[j].id == cJSON_GetObjectItem(elm, id_tag)->valueint) {
-                result[j].count++;  
+                result[j].count++;
+                result[j].accumulate += cJSON_GetObjectItem(elm, accumulate)->valuedouble;
                 found = 1;
                 break;
             }
@@ -105,6 +105,7 @@ void countOccurrencesById(cJSON *array, char *id_tag, ElementCount result[], int
 
         if (!found) {
             result[*resultSize].id = cJSON_GetObjectItem(elm, id_tag)->valueint;
+            result[*resultSize].accumulate = cJSON_GetObjectItem(elm, accumulate)->valuedouble;
             result[*resultSize].count = 1;
             (*resultSize)++;
         }
