@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <winsock2.h>
-
 #include "tools/cJSON.h"
 #include "tools/tools.h"
 #include "pages/pages.h"
