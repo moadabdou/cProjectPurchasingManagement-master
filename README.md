@@ -3,6 +3,6 @@ a small project  for  purchasing  management ,  using an http  server  in c lang
 
 
 
-# to do : next week
- -cancel sales 
+# to do : nothing for now
+
  
