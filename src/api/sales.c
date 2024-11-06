@@ -14,6 +14,8 @@
 #define NEW  "/new"
 #define REMOVE "/remove"
 
+
+
 void handel_sales_api(SOCKET client_socket, char *query , char *body, Sessions SESSIONS, int user_id){
     File_prop json_file;
     cJSON *client_data, *json_data;
@@ -136,11 +138,50 @@ void handel_sales_api(SOCKET client_socket, char *query , char *body, Sessions S
     }else if(strncmp(query , REMOVE ,  strlen(REMOVE)) == 0){
 
         printf("\n >>>> [deleting  a sale] query :%s ", query);
-        //delete the sale based on the data comming from the  query [sale id] (dont forget  to  handel  errors)
-        // data located  in SALESITEMS_DATAFILE and SALES_DATAFILE const 
-        // for error  handeling use SEND_ERROR preprocessors 
         
-        //when  deleting  is  successful  send  a 200 OK
+
+        int sale_id=0;
+        sscanf(query,"/remove/%d",&sale_id);
+
+        if(sale_id<=0){
+            SEND_ERROR_404;
+            return;
+        }
+
+        File_prop sales_file = read_file(SALES_DATAFILE, "r");
+        File_prop sales_items_file = read_file(SALESITEMS_DATAFILE, "r");
+
+        if( sales_file.content==NULL||sales_items_file.content==NULL){
+            printf("unable to opern the files\n");
+            SEND_ERROR_500;
+            return;
+        }
+
+        cJSON*sales_json = cJSON_Parse(sales_file.content);
+        cJSON*sales_item_json = cJSON_Parse(sales_items_file.content);
+        free(sales_file.content);
+        free(sales_items_file.content);
+
+        if(sales_item_json==NULL||sales_json==NULL){
+            printf("unable to parse the sales or the sales items\n");
+            SEND_ERROR_500;
+        }
+
+        int sale_target_index = SearchIndex(sales_json,sale_id,"id"); 
+        int sale_item_target_index = SearchIndex(sales_item_json,sale_id,"sale_id"); 
+
+        if(sale_target_index==-1||sale_item_target_index==-1){
+            printf("the Id given does not exist");
+            SEND_ERROR_404;
+            return;
+        }
+
+        cJSON_DeleteItemFromArray(sales_json,sale_target_index);
+        cJSON_DeleteItemFromArray(sales_item_json,sale_item_target_index);
+
+        write_file(SALES_DATAFILE,cJSON_Print(sales_json),"w");
+        write_file(SALESITEMS_DATAFILE,cJSON_Print(sales_item_json),"w");
+
         char responce[64] = "HTTP/1.1 200 OK";
         send(client_socket, responce, strlen(responce), 0);
 

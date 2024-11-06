@@ -1,3 +1,9 @@
+<div class="alert alert-warning alert-dismissible fade d-none" role="alert">
+    <strong>Oops !</strong> cant cancel this sale
+    <p class="alert-details"></p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
 <div class="sales-container">
     <h1>
         welcom to sales section
@@ -7,15 +13,27 @@
     </ul>
 </div>
 <script> 
-    document.querySelectorAll(".removeSale").forEach(el=> {
-        el.addEventListener("click", event => {
-            const id =  event.target.getAttribute("data-saleid")
-            fetch("/api/sales/remove/"+id ,{
-                method : "POST", 
-                body : ""
-            }).then(res=>{
-                console.log(res.status)
+  const alert =  document.querySelector(".alert");
+  const  errorsMsg = {
+    500 : "server Error",
+    404 : "can't find this sale to  remove"
+  }
+
+  document.querySelectorAll(".removeSale").forEach(el=> {
+            el.addEventListener("click", event => {
+                const id =  event.target.getAttribute("data-saleid")
+                fetch("/api/sales/remove/"+id ,{
+                    method : "POST", 
+                    body : ""
+                }).then(res=>{
+                    if(res.status ==  200){
+                        event.target.parentElement.parentElement.remove()
+                    }else {
+                        alert.classList.add("show");
+                        alert.classList.remove("d-none");
+                        alert.children[1].textContent = errorsMsg[res.status]
+                    }
+                })
             })
         })
-    })
 </script>

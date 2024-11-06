@@ -1,4 +1,25 @@
+<style>
+    .sales-container .dropdown-menu {
+        max-height: 300px;
+        width: 400px;
+        overflow: auto;
+    }  
+    
+    .sales-container h3 {
+        font-family: cursive;
+        text-transform: uppercase;
+        font-size: 24px;
+        margin-bottom: 25px;
+        padding-left: 15px;
+    }
+    
+</style>
 
+<div class="alert alert-warning alert-dismissible fade d-none" role="alert">
+    <strong>Oops !</strong> cant cancel this sale
+    <p class="alert-details"></p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
 <div class="sales-container">
     <h1>
         welcom to sales section 
@@ -12,7 +33,7 @@
           //c_code:employeers_drop_down
         </ul>
     </div>
-        
+    //c_code:employeer_name -only if the user chooses someone-   
     <ul>
         //c_code:sales_list
     </ul>
@@ -22,6 +43,13 @@
   document.querySelector(".dropdown-toggle").addEventListener("click", event => {
     document.querySelector(".dropdown-menu").classList.toggle("show")
   })
+
+  const alert =  document.querySelector(".alert");
+  const  errorsMsg = {
+    500 : "server Error",
+    404 : "can't find this sale to  remove"
+  }
+
   document.querySelectorAll(".removeSale").forEach(el=> {
             el.addEventListener("click", event => {
                 const id =  event.target.getAttribute("data-saleid")
@@ -29,7 +57,13 @@
                     method : "POST", 
                     body : ""
                 }).then(res=>{
-                    console.log(res.status)
+                    if(res.status ==  200){
+                        event.target.parentElement.parentElement.remove()
+                    }else {
+                        alert.classList.add("show");
+                        alert.classList.remove("d-none");
+                        alert.children[1].textContent = errorsMsg[res.status]
+                    }
                 })
             })
         })

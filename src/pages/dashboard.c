@@ -489,8 +489,13 @@ void dashboard_html(SOCKET client_socket,char *buffer, int user_id) {
             char *sales_list = "<h3>choose an employeer to see his sales</h3>";
             short   is_sale_list_malloc = 0; 
 
-            if (employeer_id !=  0){
+            char employeers_name[64] = " "; 
+
+            if (employeer_id >  0){
                 sales_list = getSalesMadeBy(employeer_id);
+                cJSON *emp = searchById(employeers_json, employeer_id);
+                char *name = cJSON_GetObjectItem(emp, "name")->valuestring;
+                snprintf(employeers_name, sizeof(employeers_name), "<h3> theses are %s's sales :</h3>", name);
                 is_sale_list_malloc = 1;
             }
 
@@ -502,7 +507,11 @@ void dashboard_html(SOCKET client_socket,char *buffer, int user_id) {
                 drop_down,
                 "employeers_drop_down",
                 1
-            }},2);
+            },{
+                employeers_name,
+                "employeer_name",
+                1
+            }},3);
 
             if (is_sale_list_malloc && sales_list != NULL){
                 free(sales_list);

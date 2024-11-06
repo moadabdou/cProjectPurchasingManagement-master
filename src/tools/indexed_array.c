@@ -113,4 +113,15 @@ void countOccurrencesById_accumulate(cJSON *array, char *id_tag, char *accumulat
 }
 
 
-
+int SearchIndex(cJSON* x_json, int Id,char*Id_tag){
+    int j= -1;
+    for(int i = 0 ; i <cJSON_GetArraySize(x_json); i++){
+        cJSON *obj = cJSON_GetArrayItem(x_json, i);
+        cJSON *id=cJSON_GetObjectItem(obj ,Id_tag); 
+        if ( cJSON_IsNumber(id) && id->valueint == Id ){ 
+            j =  i; 
+            break; 
+        }
+    }
+    return j;
+}

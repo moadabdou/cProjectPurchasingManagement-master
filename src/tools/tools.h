@@ -39,13 +39,16 @@ void  update_data_in_indexed_array(cJSON *obj,cJSON *obj_array , char *identifie
 void  delete_data_in_indexed_array_id(int id ,cJSON *obj_array, char *identifier);
 cJSON* searchById(cJSON* jsonArray, int targetId);
 cJSON* searchById_cutomized(cJSON* jsonArray, int targetId, char *id_tag);
+int SearchIndex(cJSON* x_json, int Id,char*Id_tag);
 
 typedef struct {
     int id;
     float accumulate;
     int count;
 } ElementCount;
+
 void countOccurrencesById_accumulate(cJSON *array, char *id_tag, char *accumulate, ElementCount result[], int *resultSize);
+
 
 //dynamic_memory
 void append_to_string(char **buffer, const char *new_string);

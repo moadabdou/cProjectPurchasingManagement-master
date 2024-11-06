@@ -101,18 +101,6 @@
 		"id":	10023191,
 		"total_cost":	199
 	}, {
-		"notes":	"sabat  dryada",
-		"date":	"2024-11-01",
-		"employee_id":	10028178,
-		"id":	10026365,
-		"total_cost":	17196.560546875
-	}, {
-		"notes":	"atay b sukar o lwiza",
-		"date":	"2024-11-02",
-		"employee_id":	10024973,
-		"id":	10025120,
-		"total_cost":	8356.8994140625
-	}, {
 		"notes":	"hello dear ",
 		"date":	"2024-11-02",
 		"employee_id":	10018597,
@@ -137,29 +125,11 @@
 		"id":	10030576,
 		"total_cost":	59.700000762939453
 	}, {
-		"notes":	"this new sale",
-		"date":	"2024-11-03",
-		"employee_id":	10018597,
-		"id":	10004463,
-		"total_cost":	171.83000183105469
-	}, {
 		"notes":	"ataaaaaaaaaaaaay",
 		"date":	"2024-11-03",
 		"employee_id":	10024973,
 		"id":	10006050,
 		"total_cost":	199
-	}, {
-		"notes":	"heh yey  testing",
-		"date":	"2024-11-03",
-		"employee_id":	10018597,
-		"id":	10001268,
-		"total_cost":	3103.559814453125
-	}, {
-		"notes":	"hello  this is a new sale  ",
-		"date":	"2024-11-03",
-		"employee_id":	10018597,
-		"id":	10021900,
-		"total_cost":	58.870002746582031
 	}, {
 		"notes":	"hey  this is new sale from  bochta",
 		"date":	"2024-11-04",
@@ -167,9 +137,9 @@
 		"id":	10004019,
 		"total_cost":	298.76998901367188
 	}, {
-		"notes":	"hello new sale",
-		"date":	"2024-11-04",
+		"notes":	"",
+		"date":	"2024-11-06",
 		"employee_id":	10018597,
-		"id":	10017997,
-		"total_cost":	92.909996032714844
+		"id":	10011116,
+		"total_cost":	92.399993896484375
 	}]
