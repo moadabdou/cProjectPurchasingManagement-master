@@ -12,6 +12,7 @@
 #include "../data_vars.h"
 #include "./dashboard/data_handlers.h"
 
+#include "./dashboard/admin.h"
 #include "./dashboard/manager.h"
 #include "./dashboard/employeer.h"
 
@@ -75,7 +76,7 @@ void dashboard_html(SOCKET client_socket,char *buffer, int user_id) {
         
     }else{ //admin
 
-        return;
+        admin(query, body, user_id, client_socket, user_data);
 
     }
 }

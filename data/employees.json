@@ -1,6 +1,6 @@
 [{
 		"id":	12345678,
-		"shop_id":	0,
+		"shop_id":	1,
 		"password":	"password123",
 		"email":	"example1@email.com",
 		"CIN":	"A1234567",
@@ -11,23 +11,23 @@
 		"name":	"John Doe"
 	}, {
 		"id":	23456789,
-		"shop_id":	0,
+		"shop_id":	1,
 		"password":	"pass456",
 		"email":	"example2@email.com",
 		"CIN":	"B2345678",
 		"phone_number":	"+1987654321",
-		"role":	0,
+		"role":	1,
 		"state":	1,
 		"birthdate":	"1985-05-15",
 		"name":	"Jane Smith"
 	}, {
 		"id":	34567890,
-		"shop_id":	0,
+		"shop_id":	2,
 		"password":	"mypassword789",
 		"email":	"example3@email.com",
 		"CIN":	"C3456789",
 		"phone_number":	"+1231231234",
-		"role":	0,
+		"role":	1,
 		"state":	1,
 		"birthdate":	"1992-07-20",
 		"name":	"Bob Johnson"
@@ -38,8 +38,8 @@
 		"email":	"example4@email.com",
 		"CIN":	"D4567890",
 		"phone_number":	"+3213213210",
-		"role":	0,
-		"state":	0,
+		"role":	2,
+		"state":	1,
 		"birthdate":	"1995-03-10",
 		"name":	"Alice Williams"
 	}, {

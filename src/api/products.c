@@ -27,8 +27,26 @@ void handel_products_api(SOCKET client_socket, char *query , char *body, Session
     
     if(strncmp(query , NEW ,  strlen(NEW)) == 0){
         
-        printf("\n >> this is query : %s", query);
-        printf("\n >> this is  body: %s",  body);
+        File_prop product_file = read_file(PRODUCTS_DATAFILE,"r");
+        if(product_file.content==NULL){
+            printf("unable to opern the files\n");
+            SEND_ERROR_500;
+            return;
+        }
+
+        cJSON *pro_json = cJSON_Parse(product_file.content);
+        free(product_file.content);
+        if(pro_json==NULL){
+            printf("unable to parse the sales or the sales items\n");
+            SEND_ERROR_500;
+            return;
+        }
+
+        cJSON*newpro_json=cJSON_Parse(body);
+        cJSON_AddNumberToObject(newpro_json,"id",generate_id());
+        
+        cJSON_AddItemToArray(pro_json,newpro_json);
+        write_file(PRODUCTS_DATAFILE,cJSON_Print(pro_json),"w");
 
         char response[64];
         sprintf(response , "HTTP/1.1 200 OK\r\nContent-Length: 2\r\n\r\n{}");

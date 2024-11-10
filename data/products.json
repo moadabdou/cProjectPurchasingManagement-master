@@ -1,89 +1,85 @@
-[
-    {
-        "id": 100,
-        "name": "Wireless Mouse",
-        "category": "Electronics",
-        "price": 15.99,
-        "description": "A comfortable, wireless mouse with adjustable DPI.",
-        "rating": 4.5
-    }, 
-    {
-        "id": 101,
-        "name": "Bluetooth Headphones",
-        "category": "Electronics",
-        "price": 29.99,
-        "description": "Noise-canceling headphones with long battery life.",
-        "rating": 4.7
-    },
-    {
-        "id": 102,
-        "name": "Water Bottle",
-        "category": "Sports",
-        "price": 9.99,
-        "description": "Stainless steel water bottle with 500ml capacity.",
-        "rating": 4.3
-    },
-    {
-        "id": 103,
-        "name": "Yoga Mat",
-        "category": "Sports",
-        "price": 19.99,
-        "description": "Non-slip yoga mat for comfortable practice.",
-        "rating": 4.2
-    },
-    {
-        "id": 104,
-        "name": "Desk Lamp",
-        "category": "Home Office",
-        "price": 12.99,
-        "description": "LED desk lamp with adjustable brightness.",
-        "rating": 4.4
-    },
-    {
-        "id": 105,
-        "name": "Smartphone Stand",
-        "category": "Accessories",
-        "price": 5.49,
-        "description": "Portable phone stand with adjustable angles.",
-        "rating": 4.6
-    },
-    {
-        "id": 106,
-        "name": "Notebook",
-        "category": "Stationery",
-        "price": 3.99,
-        "description": "Hardcover notebook with 200 pages, lined.",
-        "rating": 4.1
-    },
-    {
-        "id": 107,
-        "name": "USB-C Cable",
-        "category": "Electronics",
-        "price": 6.99,
-        "description": "Durable USB-C to USB-A charging cable.",
-        "rating": 4.5
-    },
-    {
-        "id": 108,
-        "name": "Running Shoes",
-        "category": "Sports",
-        "price": 49.99,
-        "description": "Lightweight running shoes for all-day comfort.",
-        "rating": 4.8
-    },
-    {
-        "id": 109,
-        "name": "Desk Organizer",
-        "category": "Home Office",
-        "price": 8.99,
-        "description": "Multi-compartment organizer for pens, paper, and more.",
-        "rating": 4.3
-    },{
-        "id": 110,
-        "name": "atay",
-        "category": "food",
-        "price": 1.99,
-        "description": "atay  naaaaadi",
-        "rating": 4.99
-    }
-]
+[{
+		"id":	100,
+		"name":	"Wireless Mouse",
+		"category":	"Electronics",
+		"price":	15.99,
+		"description":	"A comfortable, wireless mouse with adjustable DPI.",
+		"rating":	4.5
+	}, {
+		"id":	101,
+		"name":	"Bluetooth Headphones",
+		"category":	"Electronics",
+		"price":	29.99,
+		"description":	"Noise-canceling headphones with long battery life.",
+		"rating":	4.7
+	}, {
+		"id":	102,
+		"name":	"Water Bottle",
+		"category":	"Sports",
+		"price":	9.99,
+		"description":	"Stainless steel water bottle with 500ml capacity.",
+		"rating":	4.3
+	}, {
+		"id":	103,
+		"name":	"Yoga Mat",
+		"category":	"Sports",
+		"price":	19.99,
+		"description":	"Non-slip yoga mat for comfortable practice.",
+		"rating":	4.2
+	}, {
+		"id":	104,
+		"name":	"Desk Lamp",
+		"category":	"Home Office",
+		"price":	12.99,
+		"description":	"LED desk lamp with adjustable brightness.",
+		"rating":	4.4
+	}, {
+		"id":	105,
+		"name":	"Smartphone Stand",
+		"category":	"Accessories",
+		"price":	5.49,
+		"description":	"Portable phone stand with adjustable angles.",
+		"rating":	4.6
+	}, {
+		"id":	106,
+		"name":	"Notebook",
+		"category":	"Stationery",
+		"price":	3.99,
+		"description":	"Hardcover notebook with 200 pages, lined.",
+		"rating":	4.1
+	}, {
+		"id":	107,
+		"name":	"USB-C Cable",
+		"category":	"Electronics",
+		"price":	6.99,
+		"description":	"Durable USB-C to USB-A charging cable.",
+		"rating":	4.5
+	}, {
+		"id":	108,
+		"name":	"Running Shoes",
+		"category":	"Sports",
+		"price":	49.99,
+		"description":	"Lightweight running shoes for all-day comfort.",
+		"rating":	4.8
+	}, {
+		"id":	109,
+		"name":	"Desk Organizer",
+		"category":	"Home Office",
+		"price":	8.99,
+		"description":	"Multi-compartment organizer for pens, paper, and more.",
+		"rating":	4.3
+	}, {
+		"id":	110,
+		"name":	"atay",
+		"category":	"food",
+		"price":	1.99,
+		"description":	"atay  naaaaadi",
+		"rating":	4.99
+	}, {
+		"name":	"atay_bn3n3",
+		"category":	"mshrob",
+		"price":	1,
+		"description":	"very  good  atay",
+		"rating":	4.4,
+		"id":	10008342
+	}]

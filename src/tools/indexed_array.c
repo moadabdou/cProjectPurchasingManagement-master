@@ -93,7 +93,8 @@ void countOccurrencesById_accumulate_shop(cJSON *array, char *id_tag, char *accu
     for (int i = 0; i < cJSON_GetArraySize(array) ; i++) {
         cJSON *elm =  cJSON_GetArrayItem(array, i);
         if(
-            cJSON_GetObjectItem(elm, "shop_id")->valueint == shop_id
+            cJSON_GetObjectItem(elm, "shop_id")->valueint == shop_id ||
+            shop_id == -1 //-1 means  get  every thing
         ){
             int found = 0;
             for (int j = 0; j < *resultSize; j++) {

@@ -1,0 +1,298 @@
+<style>
+
+    .bg-total-sales {
+        background-color: #28a745; /* Green */
+        color: white !important;
+    }
+    .bg-total-revenue {
+        background-color: rgb(0, 123, 255); /* Blue */
+        color: white !important;
+    }
+    .insights .card p{
+        font-size: 40px;
+        font-family: fantasy;
+        padding-left: 20px;
+    }
+
+    .insights .card h5{
+        font-size: 25px ;
+    }
+
+    .card {
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .card-title {
+      font-weight: bold;
+      color: #343a40;
+    }
+    .chart-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f8f9fa;
+      border-radius: 5px;
+    }
+    .chart-container img {
+      max-height: 100%;
+      max-width: 100%;
+    }
+    #salesChart-contributions,
+    #salesChart-contributions-byrevenue {
+        width: 400px !important;
+        height: 400px !important;
+    }
+</style>
+</head>
+<body>
+<div class="container mt-5 insights">
+    <div class="dropdown mb-5">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          choose a shop to  see its insights
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="dashboard/insights/-1"> all </a></li>
+          <li><a class="dropdown-item" href="dashboard/insights/0">  Alpha </a></li>
+          <li><a class="dropdown-item" href="dashboard/insights/1">  Beta </a></li>
+          <li><a class="dropdown-item" href="dashboard/insights/2">  Gamma </a></li>
+        </ul>
+    </div>
+    <div class="row general-insights">
+        <div class="col">
+            <div class="card bg-total-sales">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        total sales
+                    </h5>
+                    <p class="card-text">
+                        //c_code:total_sales
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card bg-total-revenue">
+                <div class="card-body">
+                    <h5 class="card-title">Total Revenue</h5>
+                    <p class="card-text">
+                        //c_code:total_revenue
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title text-center">employeers contributions</h5>
+                  <div class="chart-container">
+                      <canvas id="salesChart-contributions" ></canvas>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title text-center">employeers contributions by  revenue</h5>
+                  <div class="chart-container">
+                        <canvas id="salesChart-contributions-byrevenue" width="400" height="300"></canvas>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title text-center">sales revenue</h5>
+              <div class="chart-container">
+                  <canvas id="salesChart-revenue" width="400" height="300"></canvas>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title text-center">sales quantity</h5>
+              <div class="chart-container">
+                    <canvas id="salesChart-quantity" width="400" height="300"></canvas>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelector(".dropdown-toggle").addEventListener("click", event => {
+        document.querySelector(".dropdown-menu").classList.toggle("show")
+    })
+
+</script>
+
+<script>
+    const ctx = document.getElementById('salesChart-revenue').getContext('2d');
+    
+    const salesChart_revenue = new Chart(ctx, {
+        type: 'line', // or 'bar' for a bar chart
+        data: {
+            labels: [
+                //c_code:days
+            ],
+            datasets: [{
+                label: 'Sales in USD',
+                data: [
+                    //c_code:total_weeksales_revenue
+                ], // replace these with actual sales numbers
+                backgroundColor: 'rgb(0, 123, 255, .35)' ,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2,
+                fill: true // Fill under the line for a shaded area
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Sales Amount (USD)'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Days of the Week'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                }
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+
+
+    const ctx1 = document.getElementById('salesChart-quantity').getContext('2d');
+    
+    const salesChart_quantity = new Chart(ctx1, {
+        type: 'line', // or 'bar' for a bar chart
+        data: {
+            labels: [
+                //c_code:days
+            ],
+            datasets: [{
+                label: 'Sales quatity',
+                data: [
+                    //c_code:total_weeksales_quantity
+                ], // replace these with actual sales numbers
+                backgroundColor: 'rgb(0, 123, 255, .35)' ,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2,
+                fill: true // Fill under the line for a shaded area
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Sales Amount'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Days of the Week'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                }
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+    const ctx2 = document.getElementById('salesChart-contributions').getContext('2d');
+    const salesChart_contributions= new Chart(ctx2, {
+    type: 'doughnut',
+    data: {
+        datasets: [{
+            label: 'My First Dataset',
+            data: [
+                //c_code:contributions
+            ],
+            backgroundColor: [
+                //c_code:colors
+            ]
+        }]
+    },
+    options: {
+        plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let labels = [
+                                //c_code:cont_labels
+                            ]; 
+                            let label = labels[context.dataIndex] || '';
+                            let value = context.raw;
+                            return label.trim() + ': ' + value ; 
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    const ctx3 = document.getElementById('salesChart-contributions-byrevenue').getContext('2d');
+    const salesChart_contributions_byRevenue = new Chart(ctx3, {
+    type: 'doughnut',
+    data: {
+        datasets: [{
+            label: 'My First Dataset',
+            data: [
+                //c_code:cont_revenue
+            ],
+            backgroundColor: [
+                //c_code:colors
+            ]
+        }]
+    },
+    options: {
+        plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let labels = [
+                                //c_code:cont_labels
+                            ]; 
+                            let label = labels[context.dataIndex] || '';
+                            let value = context.raw;
+                            return label.trim() + ': ' + value +'$'; 
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+</script>
+
+
+

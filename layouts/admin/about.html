@@ -1,4 +1,14 @@
 <div class="container mt-5">
+    <div class="dropdown mb-5">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          choose a shop to  see its Information
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="dashboard/about/0">  Alpha </a></li>
+          <li><a class="dropdown-item" href="dashboard/about/1">  Beta </a></li>
+          <li><a class="dropdown-item" href="dashboard/about/2">  Gamma </a></li>
+        </ul>
+    </div>
     <div class="card">
         <div class="card-header bg-primary text-white">
             <h4 id="shop-name">Shop Name</h4>
@@ -20,6 +30,11 @@
     </div>
 </div>
 
+<script>
+    document.querySelector(".dropdown-toggle").addEventListener("click", event => {
+        document.querySelector(".dropdown-menu").classList.toggle("show")
+    })
+</script>
 <script>
     // Example data for a single shop
     const shopData = [

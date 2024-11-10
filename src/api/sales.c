@@ -172,6 +172,7 @@ void handel_sales_api(SOCKET client_socket, char *query , char *body, Sessions S
         if(sales_item_json==NULL||sales_json==NULL){
             printf("unable to parse the sales or the sales items\n");
             SEND_ERROR_500;
+            return;
         }
 
         int sale_target_index = SearchIndex(sales_json,sale_id,"id"); 

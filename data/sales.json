@@ -292,4 +292,11 @@
 		"shop_id":	0,
 		"id":	10030880,
 		"total_cost":	15.479999542236328
+	}, {
+		"notes":	"new sale  dyal  atay",
+		"date":	"2024-11-10",
+		"employee_id":	10018597,
+		"shop_id":	1,
+		"id":	10008508,
+		"total_cost":	4
 	}]

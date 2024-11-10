@@ -48,7 +48,7 @@
 
             // Loop through FormData and add each entry to jsonData
             formData.forEach((value, key) => {
-                jsonData[key] = value;
+                jsonData[key] = ["price","rating"].find(el=> el == key)? Number(value) :  value;
             });
 
             let  errorMessages = {
