@@ -1,0 +1,56 @@
+[
+    {
+        "id": 0,
+        "name": "Alpha",
+        "location": "123 Main St, City Center",
+        "contact": {
+            "phone": "123-456-7890",
+            "email": "contact@alfa.com"
+        },
+        "opening_hours": {
+            "monday": "9:00 AM - 6:00 PM",
+            "tuesday": "9:00 AM - 6:00 PM",
+            "wednesday": "9:00 AM - 6:00 PM",
+            "thursday": "9:00 AM - 6:00 PM",
+            "friday": "9:00 AM - 6:00 PM",
+            "saturday": "10:00 AM - 5:00 PM",
+            "sunday": "Closed"
+        }
+    },
+    {
+        "id": 1,
+        "name": "Beta",
+        "location": "456 Broad Ave, East Side",
+        "contact": {
+            "phone": "234-567-8901",
+            "email": "contact@beta.com"
+        },
+        "opening_hours": {
+            "monday": "10:00 AM - 7:00 PM",
+            "tuesday": "10:00 AM - 7:00 PM",
+            "wednesday": "10:00 AM - 7:00 PM",
+            "thursday": "10:00 AM - 7:00 PM",
+            "friday": "10:00 AM - 7:00 PM",
+            "saturday": "10:00 AM - 6:00 PM",
+            "sunday": "Closed"
+        }
+    },
+    {
+        "id": 2,
+        "name": "Gamma",
+        "location": "789 West Blvd, Uptown",
+        "contact": {
+            "phone": "345-678-9012",
+            "email": "contact@gama.com"
+        },
+        "opening_hours": {
+            "monday": "8:00 AM - 5:00 PM",
+            "tuesday": "8:00 AM - 5:00 PM",
+            "wednesday": "8:00 AM - 5:00 PM",
+            "thursday": "8:00 AM - 5:00 PM",
+            "friday": "8:00 AM - 5:00 PM",
+            "saturday": "9:00 AM - 4:00 PM",
+            "sunday": "Closed"
+        }
+    }
+]

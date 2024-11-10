@@ -1,0 +1,81 @@
+<div class="container mt-5">
+    <h2>Add New Product</h2>
+    <div id="product-message">
+
+    </div>
+    <form id="productForm">
+        <!-- Product Name -->
+        <div class="form-group">
+            <label for="productName">Name</label>
+            <input type="text" class="form-control" id="productName" name="name" placeholder="Enter product name" required>
+        </div>
+
+        <!-- Category -->
+        <div class="form-group">
+            <label for="productCategory">Category</label>
+            <input type="text" class="form-control" id="productCategory" name="category" placeholder="Enter category" required>
+        </div>
+
+        <!-- Price -->
+        <div class="form-group">
+            <label for="productPrice">Price</label>
+            <input type="number" step="0.01" class="form-control" id="productPrice" name="price" placeholder="Enter price" required>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+            <label for="productDescription">Description</label>
+            <textarea class="form-control" id="productDescription" name="description" rows="3" placeholder="Enter description" required></textarea>
+        </div>
+
+        <!-- Rating -->
+        <div class="form-group">
+            <label for="productRating">Rating</label>
+            <input type="number" step="0.01" class="form-control" id="productRating" name="rating" placeholder="Enter rating" min="0" max="5" required>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary mt-4">Add Product</button>
+    </form>
+</div>
+<script>
+     document.getElementById('productForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form submission
+            
+            const form = event.target;
+            const formData = new FormData(form); // Create FormData object
+            const jsonData = {}; // Create an empty object for JSON data
+
+            // Loop through FormData and add each entry to jsonData
+            formData.forEach((value, key) => {
+                jsonData[key] = value;
+            });
+
+            let  errorMessages = {
+                200 : {
+                    message : "<p > this product registred succesfully </p>",
+                    type : "alert-info"
+                },
+                400 :{
+                    message : "<p style='color:red' > can't add this product </p>",
+                    type : "alert-danger"
+                }, 
+                500 :{
+                    message : "<p style='color:red' > internal  server error</p>",
+                    type : "alert-danger"
+                } 
+            }
+
+            fetch("/api/products/new" , {
+                method:"POST" , 
+                body: JSON.stringify(jsonData)
+            }).then(res=> {
+                console.log(res);
+                document.getElementById("product-message").innerHTML = `
+                    <div class="alert ${errorMessages[res.status].type}" role="alert">
+                        ${errorMessages[res.status].message}
+                    </div>
+                    `
+            })
+        });
+</script>

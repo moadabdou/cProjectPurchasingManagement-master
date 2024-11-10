@@ -1,5 +1,6 @@
 [{
 		"id":	12345678,
+		"shop_id":	0,
 		"password":	"password123",
 		"email":	"example1@email.com",
 		"CIN":	"A1234567",
@@ -10,6 +11,7 @@
 		"name":	"John Doe"
 	}, {
 		"id":	23456789,
+		"shop_id":	0,
 		"password":	"pass456",
 		"email":	"example2@email.com",
 		"CIN":	"B2345678",
@@ -20,6 +22,7 @@
 		"name":	"Jane Smith"
 	}, {
 		"id":	34567890,
+		"shop_id":	0,
 		"password":	"mypassword789",
 		"email":	"example3@email.com",
 		"CIN":	"C3456789",
@@ -30,6 +33,7 @@
 		"name":	"Bob Johnson"
 	}, {
 		"id":	45678901,
+		"shop_id":	0,
 		"password":	"wordpass321",
 		"email":	"example4@email.com",
 		"CIN":	"D4567890",
@@ -40,6 +44,7 @@
 		"name":	"Alice Williams"
 	}, {
 		"id":	56789012,
+		"shop_id":	0,
 		"password":	"newpassword456",
 		"email":	"example5@email.com",
 		"CIN":	"E5678901",
@@ -50,6 +55,7 @@
 		"name":	"Chris Brown"
 	}, {
 		"id":	67890123,
+		"shop_id":	0,
 		"password":	"pass654321",
 		"email":	"example6@email.com",
 		"CIN":	"F6789012",
@@ -60,6 +66,7 @@
 		"name":	"David Green"
 	}, {
 		"id":	78901234,
+		"shop_id":	0,
 		"password":	"letmein098",
 		"email":	"example7@email.com",
 		"CIN":	"G7890123",
@@ -70,6 +77,7 @@
 		"name":	"Ella Thompson"
 	}, {
 		"id":	89012345,
+		"shop_id":	1,
 		"password":	"abc123456",
 		"email":	"example8@email.com",
 		"CIN":	"H8901234",
@@ -80,6 +88,7 @@
 		"name":	"George White"
 	}, {
 		"id":	90123456,
+		"shop_id":	1,
 		"password":	"passabc098",
 		"email":	"example9@email.com",
 		"CIN":	"I9012345",
@@ -90,6 +99,7 @@
 		"name":	"Helen Black"
 	}, {
 		"id":	12345679,
+		"shop_id":	1,
 		"password":	"examplepass567",
 		"email":	"example10@email.com",
 		"CIN":	"J1234568",
@@ -106,6 +116,7 @@
 		"CIN":	"yr4465656",
 		"birthdate":	"2024-10-17",
 		"id":	10018597,
+		"shop_id":	1,
 		"role":	0,
 		"state":	1
 	}, {
@@ -117,7 +128,8 @@
 		"birthdate":	"2024-10-17",
 		"role":	0,
 		"state":	1,
-		"id":	10018878
+		"id":	10018878,
+		"shop_id":	1
 	}, {
 		"name":	"omar ",
 		"email":	"h@hll.com",
@@ -127,7 +139,8 @@
 		"birthdate":	"2024-10-17",
 		"role":	0,
 		"state":	1,
-		"id":	10008005
+		"id":	10008005,
+		"shop_id":	1
 	}, {
 		"name":	"moad elabdellaoui",
 		"email":	"heee@h.com",
@@ -137,7 +150,8 @@
 		"birthdate":	"2002-12-24",
 		"role":	0,
 		"state":	1,
-		"id":	10021413
+		"id":	10021413,
+		"shop_id":	1
 	}, {
 		"name":	"moad el abdellaoui",
 		"email":	"abdellawye@h.com",
@@ -147,7 +161,8 @@
 		"birthdate":	"2024-10-10",
 		"role":	0,
 		"state":	1,
-		"id":	10014026
+		"id":	10014026,
+		"shop_id":	2
 	}, {
 		"name":	"moad el abdellaoui🩻🩻🩻",
 		"email":	"abdawye@h.com",
@@ -157,7 +172,8 @@
 		"birthdate":	"2024-10-10",
 		"role":	0,
 		"state":	1,
-		"id":	10016905
+		"id":	10016905,
+		"shop_id":	2
 	}, {
 		"name":	"moha",
 		"email":	"moha@h.com",
@@ -167,7 +183,8 @@
 		"birthdate":	"2024-10-17",
 		"role":	0,
 		"state":	1,
-		"id":	10024174
+		"id":	10024174,
+		"shop_id":	2
 	}, {
 		"name":	"l7aj 3omar",
 		"email":	"l7aj@omar.com",
@@ -177,7 +194,8 @@
 		"birthdate":	"2024-10-10",
 		"role":	0,
 		"state":	1,
-		"id":	10026525
+		"id":	10026525,
+		"shop_id":	2
 	}, {
 		"name":	"bochta",
 		"email":	"a@gmail.com",
@@ -187,7 +205,8 @@
 		"birthdate":	"2024-10-03",
 		"role":	0,
 		"state":	1,
-		"id":	10028178
+		"id":	10028178,
+		"shop_id":	2
 	}, {
 		"name":	"ñdfkgdfd",
 		"email":	"haa@h.com",
@@ -197,7 +216,8 @@
 		"birthdate":	"2024-10-11",
 		"role":	0,
 		"state":	1,
-		"id":	10020898
+		"id":	10020898,
+		"shop_id":	2
 	}, {
 		"name":	"saad boussof",
 		"email":	"qirudjb@h.com",
@@ -207,7 +227,8 @@
 		"birthdate":	"2024-11-15",
 		"role":	0,
 		"state":	0,
-		"id":	10024973
+		"id":	10024973,
+		"shop_id":	2
 	}, {
 		"name":	"bojm3a ",
 		"email":	"bojm3a@email.com",
@@ -217,5 +238,28 @@
 		"birthdate":	"2005-10-27",
 		"role":	0,
 		"state":	1,
-		"id":	10009437
+		"id":	10009437,
+		"shop_id":	2
+	}, {
+		"name":	"idjfjdgdg",
+		"email":	"ex@email.com",
+		"password":	"sjfgvñehdgvd",
+		"phone_number":	"0762017671",
+		"CIN":	"RC43656",
+		"birthdate":	"2005-11-29",
+		"shop_id":	1,
+		"role":	0,
+		"state":	0,
+		"id":	10002100
+	}, {
+		"name":	"moad el abdellaoui",
+		"email":	"e@email.com",
+		"password":	"sjfgvñehdgvd",
+		"phone_number":	"0762017671",
+		"CIN":	"yr4465656",
+		"birthdate":	"2005-11-22",
+		"shop_id":	0,
+		"role":	0,
+		"state":	0,
+		"id":	10003201
 	}]

@@ -1,5 +1,5 @@
 
-typedef struct Props{
+typedef struct {
     char  *data;
     char  *tag;
     int  count;

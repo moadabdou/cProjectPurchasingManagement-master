@@ -461,6 +461,14 @@ form button:hover {
                         <input name="birthdate" id="datefield" type="date" value="0" min="1950-01-31" max="2005-12-01">
                         <label>birth date</label>
                     </div>
+                    <div class="form-group">
+                        <label for="shopSelect">Choose a Shop</label>
+                        <select class="form-control" id="shopSelect" name="shop_id">
+                            <option value="0">Shop Alpha</option>
+                            <option value="1">Shop Beta</option>
+                            <option value="2">Shop Gamma</option>
+                        </select>
+                    </div>
                     <button type="submit">Sign Up</button>
                 </form>
                 <div class="bottom-link">
@@ -522,7 +530,7 @@ form button:hover {
 
             // Loop through FormData and add each entry to jsonData
             formData.forEach((value, key) => {
-                jsonData[key] = value;
+                jsonData[key] = ["shop_id"].find(el=> el == key)? Number(value) : value;
             });
 
             let  errorMessages = {

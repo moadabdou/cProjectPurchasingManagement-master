@@ -166,4 +166,157 @@
 				"product_id":	104,
 				"quantity":	5
 			}]
+	}, {
+		"sale_id":	10011167,
+		"products":	[{
+				"product_id":	104,
+				"quantity":	6
+			}, {
+				"product_id":	106,
+				"quantity":	9
+			}]
+	}, {
+		"sale_id":	10012489,
+		"products":	[{
+				"product_id":	102,
+				"quantity":	8
+			}]
+	}, {
+		"sale_id":	10006829,
+		"products":	[{
+				"product_id":	102,
+				"quantity":	3
+			}]
+	}, {
+		"sale_id":	10010248,
+		"products":	[{
+				"product_id":	102,
+				"quantity":	4
+			}]
+	}, {
+		"sale_id":	10017177,
+		"products":	[{
+				"product_id":	102,
+				"quantity":	3
+			}, {
+				"product_id":	104,
+				"quantity":	4
+			}]
+	}, {
+		"sale_id":	10017321,
+		"products":	[{
+				"product_id":	102,
+				"quantity":	4
+			}, {
+				"product_id":	104,
+				"quantity":	6
+			}]
+	}, {
+		"sale_id":	10018487,
+		"products":	[{
+				"product_id":	105,
+				"quantity":	3
+			}]
+	}, {
+		"sale_id":	10019039,
+		"products":	[{
+				"product_id":	103,
+				"quantity":	4
+			}, {
+				"product_id":	103,
+				"quantity":	4
+			}]
+	}, {
+		"sale_id":	10019163,
+		"products":	[{
+				"product_id":	102,
+				"quantity":	1
+			}, {
+				"product_id":	105,
+				"quantity":	1
+			}, {
+				"product_id":	108,
+				"quantity":	1
+			}]
+	}, {
+		"sale_id":	10020100,
+		"products":	[{
+				"product_id":	102,
+				"quantity":	1
+			}, {
+				"product_id":	104,
+				"quantity":	1
+			}]
+	}, {
+		"sale_id":	10020211,
+		"products":	[{
+				"product_id":	101,
+				"quantity":	1
+			}, {
+				"product_id":	102,
+				"quantity":	1
+			}, {
+				"product_id":	104,
+				"quantity":	1
+			}]
+	}, {
+		"sale_id":	10021005,
+		"products":	[{
+				"product_id":	103,
+				"quantity":	1
+			}, {
+				"product_id":	102,
+				"quantity":	1
+			}]
+	}, {
+		"sale_id":	10022213,
+		"products":	[{
+				"product_id":	103,
+				"quantity":	5
+			}, {
+				"product_id":	105,
+				"quantity":	2
+			}]
+	}, {
+		"sale_id":	10026491,
+		"products":	[{
+				"product_id":	102,
+				"quantity":	1
+			}, {
+				"product_id":	107,
+				"quantity":	1
+			}]
+	}, {
+		"sale_id":	10027137,
+		"products":	[{
+				"product_id":	100,
+				"quantity":	1
+			}]
+	}, {
+		"sale_id":	10027545,
+		"products":	[{
+				"product_id":	100,
+				"quantity":	1
+			}]
+	}, {
+		"sale_id":	10030243,
+		"products":	[{
+				"product_id":	101,
+				"quantity":	1
+			}, {
+				"product_id":	100,
+				"quantity":	1
+			}, {
+				"product_id":	107,
+				"quantity":	1
+			}]
+	}, {
+		"sale_id":	10030880,
+		"products":	[{
+				"product_id":	102,
+				"quantity":	1
+			}, {
+				"product_id":	105,
+				"quantity":	1
+			}]
 	}]

@@ -47,6 +47,7 @@
       return options;
     }
 
+
     // Add a new product field
     document.getElementById('addProductBtn').addEventListener('click', () => {
       productCount++;
@@ -72,8 +73,70 @@
 
 
     //adding new sale 
+      // Function to create and download the PDF bill
+    function downloadBill(billData) {
+          const { jsPDF } = window.jspdf;  // Get jsPDF from the global window object
+
+          // Create a new jsPDF instance
+          const doc = new jsPDF();
+
+          // Add company header
+          doc.setFontSize(18);
+          doc.setFont("helvetica", "bold");
+          doc.text(billData.shop.name, 20, 20);
+          doc.setFontSize(12);
+          doc.text(billData.shop.location, 20, 28);
+          doc.text('Phone: '+ billData.shop.contact.phone + '| Email:'+ billData.shop.contact.email, 20, 34);
+
+          // Add invoice title
+          doc.setFontSize(16);
+          doc.text('purchasing  bill', 160, 20);
+
+          // Add notes
+          doc.setFontSize(12);
+          doc.text(`Notes: ${billData.notes}`, 20, 50);
+
+          // Create a table header
+          doc.setFontSize(12);
+          doc.setFont("helvetica", "bold");
+          doc.text('Product ID', 20, 60);
+          doc.text('Product Name', 60, 60);
+          doc.text('Quantity', 140, 60);
+          doc.text('Price ($)', 180, 60);
+
+          // Add products
+          let yPosition = 70;
+          let totalAmount = 0;
+          billData.products.forEach((product) => {
+              const productTotal = product.quantity * product.price;
+              totalAmount += productTotal;
+
+              doc.setFont("helvetica", "normal");
+              doc.text(String(product.id), 20, yPosition);
+              doc.text(product.name, 60, yPosition);
+              doc.text(String(product.quantity), 140, yPosition);
+              doc.text(String(product.price), 180, yPosition);
+
+              yPosition += 10;
+          });
+
+          // Add footer (total amount)
+          doc.setFont("helvetica", "bold");
+
+          doc.text(`Total Amount: $${billData.totalAmount}`, 20, yPosition + 10);
+
+          // Save the PDF
+          doc.save('bill.pdf');
+    }
 
     const sale_form =  document.getElementById("new_sale");
+    const products_infos =[
+      //c_code:products
+    ][0]; 
+    const shop_infos =[
+      //c_code:shop_data
+    ][0]; 
+
 
     sale_form.addEventListener("submit" , event=> {
         event.preventDefault();
@@ -115,6 +178,16 @@
             document.getElementById("sale-message").innerHTML =  Messages[res.status]
             if(res.status == 200){
                 res.text().then(data => {
+                    downloadBill({
+                        notes: jsonData.notes,
+                        products:jsonData.products.map(p=> {
+                          let ep = products_infos.find(ep => ep.id == p.product_id);
+                          ep.quantity = p.quantity
+                          return ep
+                        }),
+                        shop : shop_infos,
+                        totalAmount : data.trim()
+                    });
                     document.querySelector(".total-cost").innerHTML = `
                     <div class="alert alert-info" role="alert">
                         this sales registred succesfully <h3>total :${data.trim()}$</h3>
@@ -127,6 +200,4 @@
             }
         })
     })
-
-
   </script>

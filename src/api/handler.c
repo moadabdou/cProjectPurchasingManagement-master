@@ -9,6 +9,8 @@
 
 #define EMPLOYEE_QUERY "/employees"
 #define SALES_QUERY "/sales"
+#define PRODUCTS_QUERY "/products"
+
 
 void handle_post(SOCKET client_socket, char *request,  Sessions SESSIONS, int user_id) { //api handler 
 
@@ -40,6 +42,8 @@ void handle_post(SOCKET client_socket, char *request,  Sessions SESSIONS, int us
         handel_employee_api(client_socket , query +  strlen(EMPLOYEE_QUERY) , body, SESSIONS, user_id); //as we found the query of  etudient we move the point  by litte so we cath only the following data
     }else if(strncmp(query, SALES_QUERY , strlen(SALES_QUERY))== 0){
         handel_sales_api(client_socket , query +  strlen(SALES_QUERY) , body, SESSIONS, user_id);
+    }else if(strncmp(query, PRODUCTS_QUERY , strlen(PRODUCTS_QUERY))== 0){
+        handel_products_api(client_socket , query +  strlen(PRODUCTS_QUERY) , body, SESSIONS, user_id);
     }else {
         SEND_ERROR_404_API;
     }

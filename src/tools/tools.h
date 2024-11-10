@@ -5,14 +5,14 @@
 
 //http_header
 //cookies
-typedef struct Cookie{
+typedef struct {
     char name[32]; 
     char value[128];
 }Cookie;
 Cookie  get_cookie(char *buffer , const char *name);
 
 //sessions
-typedef struct  Sessions
+typedef struct 
 {
     int  *sessions;
     int  max ;
@@ -23,7 +23,7 @@ void close_session(Sessions SESSIONS , int id );
 char check_in_sessions(Sessions SESSIONS, int id);
 
 //files.c
-typedef struct File_prop{
+typedef struct {
     char *content ; 
     long long length ;
 }File_prop;
@@ -47,7 +47,7 @@ typedef struct {
     int count;
 } ElementCount;
 
-void countOccurrencesById_accumulate(cJSON *array, char *id_tag, char *accumulate, ElementCount result[], int *resultSize);
+void countOccurrencesById_accumulate_shop(cJSON *array, char *id_tag, char *accumulate, ElementCount result[], int *resultSize,int shop_id);
 
 
 //dynamic_memory

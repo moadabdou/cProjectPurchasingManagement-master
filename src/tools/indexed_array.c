@@ -85,30 +85,33 @@ cJSON* searchById_cutomized(cJSON* jsonArray, int targetId, char *id_tag) {
 
 //occurence  of an id 
 
-void countOccurrencesById_accumulate(cJSON *array, char *id_tag, char *accumulate, ElementCount result[], int *resultSize) {
+void countOccurrencesById_accumulate_shop(cJSON *array, char *id_tag, char *accumulate, ElementCount result[], int *resultSize, int shop_id) {
 
     *resultSize = 0;  
 
 
     for (int i = 0; i < cJSON_GetArraySize(array) ; i++) {
-        int found = 0;
         cJSON *elm =  cJSON_GetArrayItem(array, i);
-        
-        for (int j = 0; j < *resultSize; j++) {
-            if (result[j].id == cJSON_GetObjectItem(elm, id_tag)->valueint) {
-                result[j].count++;
-                result[j].accumulate += cJSON_GetObjectItem(elm, accumulate)->valuedouble;
-                found = 1;
-                break;
+        if(
+            cJSON_GetObjectItem(elm, "shop_id")->valueint == shop_id
+        ){
+            int found = 0;
+            for (int j = 0; j < *resultSize; j++) {
+                if (result[j].id == cJSON_GetObjectItem(elm, id_tag)->valueint) {
+                    result[j].count++;
+                    result[j].accumulate += cJSON_GetObjectItem(elm, accumulate)->valuedouble;
+                    found = 1;
+                    break;
+                }
             }
-        }
 
-        if (!found) {
-            result[*resultSize].id = cJSON_GetObjectItem(elm, id_tag)->valueint;
-            result[*resultSize].accumulate = cJSON_GetObjectItem(elm, accumulate)->valuedouble;
-            result[*resultSize].count = 1;
-            (*resultSize)++;
-        }
+            if (!found) {
+                result[*resultSize].id = cJSON_GetObjectItem(elm, id_tag)->valueint;
+                result[*resultSize].accumulate = cJSON_GetObjectItem(elm, accumulate)->valuedouble;
+                result[*resultSize].count = 1;
+                (*resultSize)++;
+            }
+            }
     }
 }
 

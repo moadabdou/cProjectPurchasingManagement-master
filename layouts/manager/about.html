@@ -1,0 +1,48 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h4 id="shop-name">Shop Name</h4>
+        </div>
+        <div class="card-body">
+            <p><strong>Location:</strong> <span id="shop-location"></span></p>
+            
+            <h5>Contact Information</h5>
+            <ul class="list-unstyled">
+                <li><strong>Phone:</strong> <span id="shop-phone"></span></li>
+                <li><strong>Email:</strong> <span id="shop-email"></span></li>
+            </ul>
+            
+            <h5>Opening Hours</h5>
+            <ul class="list-unstyled" id="opening-hours">
+                <!-- Opening hours will be populated here -->
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Example data for a single shop
+    const shopData = [
+        //c_code:shop_data 
+    ];
+
+    // Function to populate the template with shop data
+    function displayShopInfo(data) {
+        document.getElementById('shop-name').innerText = data.name;
+        document.getElementById('shop-location').innerText = data.location;
+        document.getElementById('shop-phone').innerText = data.contact.phone;
+        document.getElementById('shop-email').innerText = data.contact.email;
+
+        // Populate opening hours
+        const openingHoursElement = document.getElementById('opening-hours');
+        openingHoursElement.innerHTML = ''; // Clear previous data
+        for (const [day, hours] of Object.entries(data.opening_hours)) {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `<strong>${day.charAt(0).toUpperCase() + day.slice(1)}:</strong> ${hours}`;
+            openingHoursElement.appendChild(listItem);
+        }
+    }
+
+    // Display the shop data
+    displayShopInfo(shopData[0]);
+</script>

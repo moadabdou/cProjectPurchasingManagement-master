@@ -5,10 +5,9 @@
 #include "../tools/tools.h"
 #include "../tools/errors.h"
 #include "../tools/cJSON.h"
+#include "../data_vars.h"
 
 
-#define DATAFILE "./data/employees.json"
-#define GET  "/get"
 #define AUTH  "/auth"
 #define NEW  "/new"
 #define SUSPEND "/suspend" //delete  already  used 
@@ -69,26 +68,8 @@ void handel_employee_api(SOCKET client_socket, char *query , char *body, Session
         printf("\n session %d : %d " , i , SESSIONS.sessions[i]);
     }
 
-    if (strncmp(query , GET ,  strlen(GET)) == 0){
-
-        json_file = read_file(DATAFILE , "rb");
-
-        if (json_file.content == NULL) {
-           printf("cant open  files ");
-           SEND_ERROR_500;
-           return;
-        }
-
-        char header[256];
-        sprintf(header, "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: %ld\r\n\r\n", json_file.length);
-
-        send(client_socket, header, strlen(header), 0);
-        send(client_socket , json_file.content , json_file.length, 0);
-
-        free(json_file.content);
-
-    }else if(strncmp(query , NEW ,  strlen(NEW)) == 0){
-        json_file = read_file(DATAFILE,"r");
+    if(strncmp(query , NEW ,  strlen(NEW)) == 0){
+        json_file = read_file(EMPLOYEES_DATAFILE,"r");
 
         if (json_file.content == NULL || body == NULL) {
            printf("cant open  files or cant  get body data");
@@ -109,7 +90,7 @@ void handel_employee_api(SOCKET client_socket, char *query , char *body, Session
         cJSON_AddNumberToObject( client_data  ,"role" , 0);
         cJSON_AddNumberToObject( client_data  ,"state" , 0);
         if (check_email_validity(json_data, client_data)){
-            update_data_in_indexed_array(client_data , json_data , DATAFILE);
+            update_data_in_indexed_array(client_data , json_data , EMPLOYEES_DATAFILE);
         }else {
             SEND_ERROR_400;
             return;
@@ -117,7 +98,7 @@ void handel_employee_api(SOCKET client_socket, char *query , char *body, Session
 
         printf("\n received json new  employees: \n %s" , cJSON_Print(client_data));
 
-        write_file(DATAFILE , cJSON_Print(json_data), "w");
+        write_file(EMPLOYEES_DATAFILE , cJSON_Print(json_data), "w");
 
 
         char *response = "HTTP/1.1 200 OK\r\nContent-Length: 2\r\n\r\n{}";
@@ -125,7 +106,7 @@ void handel_employee_api(SOCKET client_socket, char *query , char *body, Session
 
     }else if(strncmp(query , AUTH ,  strlen(AUTH)) == 0){
 
-        json_file = read_file(DATAFILE,"r");
+        json_file = read_file(EMPLOYEES_DATAFILE,"r");
 
         if (json_file.content == NULL || body == NULL) {
            printf("cant open  files or cant  get body data");
@@ -170,7 +151,7 @@ void handel_employee_api(SOCKET client_socket, char *query , char *body, Session
         send(client_socket, cJSON_Print(response_validity), strlen(cJSON_Print(response_validity)), 0);
 
     }else if(strncmp(query , SUSPEND ,  strlen(SUSPEND)) == 0){  
-        json_file = read_file(DATAFILE, "r");
+        json_file = read_file(EMPLOYEES_DATAFILE, "r");
         
         if (json_file.content == NULL || body  == NULL) {
            printf("\n ERROR : cant open  files or body is  NULL\n");
@@ -204,7 +185,7 @@ void handel_employee_api(SOCKET client_socket, char *query , char *body, Session
             return;
         }
 
-        write_file(DATAFILE , cJSON_Print(json_data), "w");
+        write_file(EMPLOYEES_DATAFILE , cJSON_Print(json_data), "w");
 
         char *response = "HTTP/1.1 200 OK\r\nContent-Length: 2\r\n\r\n{}";
         send(client_socket, response, strlen(response), 0);
