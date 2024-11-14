@@ -68,18 +68,4 @@
 		"price":	8.99,
 		"description":	"Multi-compartment organizer for pens, paper, and more.",
 		"rating":	4.3
-	}, {
-		"id":	110,
-		"name":	"atay",
-		"category":	"food",
-		"price":	1.99,
-		"description":	"atay  naaaaadi",
-		"rating":	4.99
-	}, {
-		"name":	"atay_bn3n3",
-		"category":	"mshrob",
-		"price":	1,
-		"description":	"very  good  atay",
-		"rating":	4.4,
-		"id":	10008342
 	}]

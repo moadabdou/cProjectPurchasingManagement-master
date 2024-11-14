@@ -112,7 +112,7 @@ void countOccurrencesById_accumulate_shop(cJSON *array, char *id_tag, char *accu
                 result[*resultSize].count = 1;
                 (*resultSize)++;
             }
-            }
+        }
     }
 }
 

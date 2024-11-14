@@ -68,8 +68,8 @@ void admin(char *query, char *body, int user_id, SOCKET client_socket, cJSON *us
 
         for (int i = 0;  i <  cJSON_GetArraySize(employeers_json); i++){ //managers are employeers  of  admin
             cJSON *employeer =  cJSON_GetArrayItem(employeers_json, i);
-            int shop_id = cJSON_GetObjectItem(employeer ,"shop_id")->valueint;
             if (cJSON_GetObjectItem(employeer ,"role")->valueint == 1){ 
+                int shop_id = cJSON_GetObjectItem(employeer ,"shop_id")->valueint;
                 char *shop_name = cJSON_GetObjectItem(
                         searchById(shops_json, shop_id), "name"
                     )->valuestring;

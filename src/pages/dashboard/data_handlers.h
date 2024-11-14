@@ -250,6 +250,7 @@ char *get_insights(char *HTML_TEMPLATE, int shop_id){
         sprintf(occurence_revenue_data + i*7, "%6.0f,", occurenceCount[i].accumulate);
         sprintf(occurence_colors + i*30 ,"%30s", my_colors[i]);
         cJSON *employeer = searchById(employeers_json, occurenceCount[i].id);
+        printf(">> %s <<", cJSON_Print(employeer));
         sprintf(occurence_name_id + i*64 ,"'%52s#%8d',", cJSON_GetObjectItem(employeer, "name")->valuestring ,  occurenceCount[i].id);
 
     }

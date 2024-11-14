@@ -14,7 +14,7 @@
         btn.addEventListener("click" , function(event){
             const option  = this.textContent == "Active" ? 1 : 0;
             const id = Number(this.parentElement
-                                .firstElementChild
+                                .children[1]
                                 .textContent
                                 .match(/id: #(\d+)/)[1])
             fetch("/api/employees/suspend", {

@@ -75,7 +75,7 @@ void manager(char *query, char *body, int user_id, SOCKET client_socket, cJSON *
             "sales_list",
             1
         },{
-            drop_down,
+            drop_down ? drop_down : " no employeers ",
             "employeers_drop_down",
             1
         },{
@@ -171,7 +171,7 @@ void manager(char *query, char *body, int user_id, SOCKET client_socket, cJSON *
         }
         
         side_content = c_html_render(EMPLOYEERS_MANAGER, (Props []){{
-            employeers_list,
+            employeers_list ? employeers_list : "no  employeers" ,
             "employeers_list",
             1
         }} , 1);
