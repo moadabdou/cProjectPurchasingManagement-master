@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center">sales quantity</h5>
+          <div class="chart-container">
+                <canvas id="salesChart-times" width="400" height="300"></canvas>
+          </div>
+        </div>
+    </div>
+</div>
+<script>
+    const ctx = document.getElementById('salesChart-times').getContext('2d');
+    const  labels = [`
+        //c_code:date
+        `,`
+        //c_code:shop_name
+        `
+    ]
+
+    const salesChart_times = new Chart(ctx, {
+        type: 'line', // or 'bar' for a bar chart
+        data: {
+            labels: Array.from({ length: 31 }, (_, i) => i + 1),
+            datasets: [{
+                label: 'sale times in  that month '+labels[0] + labels[1],
+                data: [
+                    //c_code:data
+                ], // replace these with actual sales numbers
+                backgroundColor: 'rgb(0, 123, 255, .35)' ,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2,
+                fill: true // Fill under the line for a shaded area
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'sale  times'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Days of the month'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                }
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+</script>

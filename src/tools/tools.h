@@ -30,6 +30,8 @@ typedef struct {
 
 File_prop read_file(const char *filename, const char *mode);
 void write_file(const char *filename, const char *data, const char *mode);
+cJSON* load_json_from_file(const char *path);
+
 
 //math_tools.c
 int generate_id();

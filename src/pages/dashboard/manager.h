@@ -3,34 +3,27 @@
 
 #define NOT_FOUND  "./layouts/404.html"
 //manager layouts
-#define HTML_FILE_MANAGER "./layouts/manager/dashboard.html"
+#define SIDEBAR "./layouts/manager/sidebar.html"
 #define SALES_LIST_MANAGER "./layouts/manager/sales_list.html"
 #define INSIGHTS_MANAGER      "./layouts/manager/insights.html"
 #define EMPLOYEERS_MANAGER  "./layouts/manager/employeers.html"
 #define NEWPRODUCT          "./layouts/manager/newProduct.html"
+#define PRODUCT_PERFORMANCE "./layouts/manager/product_performance.html"
 #define ABOUT          "./layouts/manager/about.html"
 
-void manager(char *query, char *body, int user_id, SOCKET client_socket, cJSON *user_data){
+dashboardContent manager(char *query, char *body, int user_id, SOCKET client_socket, cJSON *user_data){
     char *active = "0";
     char *side_content = " no  content ";  
     //shop_id of the manager
     int shop_id_manager = cJSON_GetObjectItem(user_data, "shop_id")->valueint;
+    dashboardContent NULL_CONTENT = {NULL, NULL};
 
     if (strlen(query) == 0 || strlen(query) == 1 || strncmp(query, "/sales" , strlen("/sales"))== 0 ){
 
-        File_prop employeers = read_file(EMPLOYEES_DATAFILE ,"r");
-        if(employeers.content == NULL){
-            printf("\n cant open one of the files :  %s", EMPLOYEES_DATAFILE);
-            SEND_ERROR_500;
-            return ;
-        }  
-        //parsing data  
-        cJSON *employeers_json = cJSON_Parse(employeers.content);
-        free(employeers.content);
-        if (employeers_json == NULL){
-            printf("\n cant parse data one of the files :  %s", EMPLOYEES_DATAFILE);
-            SEND_ERROR_500;
-            return ;
+        cJSON* employeers_json = load_json_from_file(EMPLOYEES_DATAFILE);
+        if (employeers_json ==  NULL){
+            SEND_ERROR_500
+            return NULL_CONTENT;
         }
 
         //drop down menu of employeers     
@@ -95,45 +88,35 @@ void manager(char *query, char *body, int user_id, SOCKET client_socket, cJSON *
         if (side_content == NULL){
             printf("\n>> cant  get  sales of this user");
             SEND_ERROR_500;
-            return;
+            return NULL_CONTENT;
         }
 
 
 
     }else if(strncmp(query, "/saleDetails" , strlen("/saleDetails"))== 0){ //sale details 
-    
         side_content = getSale_detailes_query(query);
         if (side_content == NULL){
             printf("\n>> cant  get  sale  details");
             SEND_ERROR_500;
         }
+
     }else if(strncmp(query, "/insights" , strlen("/insights"))== 0){
         active = "1";
-        side_content = get_insights(INSIGHTS_MANAGER, shop_id_manager);
+        side_content = get_insights(INSIGHTS_MANAGER, shop_id_manager, 0);
         if (side_content == NULL){
             SEND_ERROR_500;
-            return;
+            return NULL_CONTENT;
         }
 
     }else if(strncmp(query, "/employeers" , strlen("/employeers"))== 0){
         active = "2"; 
         //getting  data  files 
-        File_prop employeers = read_file(EMPLOYEES_DATAFILE ,"r");
-
-        if(employeers.content == NULL){
-            printf("\n cant open one of the files :  %s ", EMPLOYEES_DATAFILE);
-            SEND_ERROR_500;
-            return;
-        } 
-        //parsing data  
-        cJSON *employeers_json = cJSON_Parse(employeers.content);
-        free(employeers.content);
-
-        if (!employeers_json || !cJSON_IsArray(employeers_json)) {
-            printf("Error parsing JSON or not an array.\n");
-            SEND_ERROR_500;
-            return;
+        cJSON* employeers_json = load_json_from_file(EMPLOYEES_DATAFILE);
+        if (employeers_json ==  NULL){
+            SEND_ERROR_500
+            return NULL_CONTENT;
         }
+
         const char *employeer_template = 
                         "<div class=\"card mt-3\">"
                             "<div class=\"card-header\">"
@@ -182,24 +165,87 @@ void manager(char *query, char *body, int user_id, SOCKET client_socket, cJSON *
     }else if(strncmp(query, "/newProduct" , strlen("/newProduct"))== 0){
         active = "3";
         side_content = c_html_render( NEWPRODUCT , NULL, 0);
-    }else if(strncmp(query, "/about" , strlen("/about")) == 0){
+    }else if(strncmp(query, "/products" , strlen("/products")) == 0){
         active = "4";
+
+        side_content = get_products_list();
+
+        if (side_content == NULL){
+            SEND_ERROR_500
+            return NULL_CONTENT;
+        }
+
+    }else if (strncmp(query, "/ProductPerformance" , strlen("/ProductPerformance"))== 0){
+
+        active = "4";
+                
+        cJSON* products = load_json_from_file(PRODUCTS_DATAFILE); 
+
+        if (products == NULL ){
+            SEND_ERROR_500;
+            return NULL_CONTENT;
+        }
+
+        int product_id = -1;
+        char date[32] = {0};
+
+        sscanf(query, "/ProductPerformance/%d?date=%s", &product_id, date);
+        cJSON* product =  searchById(products, product_id);
+        if (product == NULL){
+            SEND_ERROR_404;
+            return NULL_CONTENT;
+        }
         
-        File_prop shops   = read_file(SHOPS_DATAFILE, "r");
+        char product_name_id[128];
+        sprintf(product_name_id, "%s <span id =\"product_id\" style=\"color:#777;\">#%d</span>", cJSON_GetObjectItem(product, "name")->valuestring, product_id);
+        
 
-        if(shops.content == NULL){
-            printf("\n cant open one of the files :  %s ", SHOPS_DATAFILE);
-            SEND_ERROR_500;
-            return;
-        } 
-        //parsing data  
-        cJSON *shops_json = cJSON_Parse(shops.content);
-        free(shops.content);
+        char generale_sale_time[16] ;
+        sprintf(generale_sale_time, "%d", get_sale_times(product_id, shop_id_manager));
 
-        if (!shops_json || !cJSON_IsArray(shops_json)) {
-            printf("[from manager/about] Error parsing JSON or not an array.\n");
-            SEND_ERROR_500;
-            return;
+        //diagram
+        if (date[0] == 0){
+            struct tm  *now = get_current_date();
+            sprintf(date, "%d-%d", 1900 + now->tm_year, now->tm_mon + 1);
+        }
+
+        cJSON *shops = load_json_from_file(SHOPS_DATAFILE);
+        if(shops == NULL){
+            SEND_ERROR_500
+            return NULL_CONTENT;
+        }
+
+        cJSON *shop = searchById(shops , shop_id_manager);
+
+
+        char *diagram = get_performance_diagram(date, shop_id_manager, cJSON_GetObjectItem(shop, "name")->valuestring ,product_id);
+
+        side_content =  c_html_render(PRODUCT_PERFORMANCE, (Props []){{
+            product_name_id,
+            "product_name_id",
+            1
+        },{
+            generale_sale_time,
+            "general",
+            1
+        },{
+            diagram, 
+            "diagram",
+            1
+        }}, 3);
+
+        if (diagram !=  NULL){
+            free(diagram);
+        }
+
+
+    }else if(strncmp(query, "/about" , strlen("/about")) == 0){
+        active = "5";
+        
+        cJSON* shops_json = load_json_from_file(SHOPS_DATAFILE);
+        if (shops_json ==  NULL){
+            SEND_ERROR_500
+            return NULL_CONTENT;
         }
 
         cJSON *shop_data = searchById(shops_json, shop_id_manager);
@@ -215,41 +261,22 @@ void manager(char *query, char *body, int user_id, SOCKET client_socket, cJSON *
         side_content = c_html_render(NOT_FOUND, NULL , 0);
     }
 
-    //render dashboard html 
-    Props props[] ={
-        {
-            cJSON_GetObjectItem(user_data, "name")->valuestring,//to do :  check  if  the user name exist first
-            "User_name",
-            1
-        }, 
-        {   
-            side_content ,
-            "side_content",
-            1
-        },
-        {
+    return (dashboardContent){
+        side_content : side_content,
+        sidebar : c_html_render(SIDEBAR, (Props[]){{
             active,
             "active_element",
             1
-        }
+        }}, 1)
     };
-
-    int props_length =  sizeof(props)/sizeof(Props);
-
-    char  *rendered_content  =  c_html_render(HTML_FILE_MANAGER, props , props_length);
-
-    if (rendered_content == NULL){
-        SEND_ERROR_500;
-        return;
-    }
-    char header[256*2];
-    sprintf(header, "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: %ld\r\n\r\n", strlen(rendered_content));
-    
-    send(client_socket, header, strlen(header), 0);
-    send(client_socket, rendered_content , strlen(rendered_content), 0);
-    
-    //free(side_content);
-    free(rendered_content);
 }
 
+#undef SIDEBAR 
+#undef SALES_LIST_MANAGER 
+#undef INSIGHTS_MANAGER     
+#undef EMPLOYEERS_MANAGER  
+#undef NEWPRODUCT   
+#undef PRODUCT_PERFORMANCE        
+#undef ABOUT  
+       
 #endif

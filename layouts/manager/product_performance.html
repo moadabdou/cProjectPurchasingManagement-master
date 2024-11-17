@@ -1,0 +1,60 @@
+<style>
+    .bg-total-sales {
+        background-color: #28a745; /* Green */
+        color: white !important;
+    }
+
+    .card p{
+        font-size: 40px;
+        font-family: fantasy;
+        padding-left: 20px;
+    }
+
+    .card h5{
+        font-size: 25px ;
+    }
+</style>
+
+<h1>
+   product performance 
+</h1>
+<h3>
+    //c_code:product_name_id
+</h3>
+
+<div class="row">
+    <div class="col">
+        <div class="card bg-total-sales">
+            <div class="card-body">
+                <h5 class="card-title">
+                    total sale times
+                </h5>
+                <p class="card-text">
+                    //c_code:general
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="options mt-5">
+        <input  class="d-inline-block " type="month" id="monthYear" name="monthYear" style="width: 200px;">
+        <button type="button" id="get_data" class="btn btn-primary d-inline-block " style="width: 100px;">get data</button>
+    </div>
+    <div class="diagram mt-3">
+        //c_code:diagram 
+    </div> 
+</div>
+<script>
+    const yearMonth = document.getElementById("monthYear"),
+            btn = document.getElementById("get_data")
+
+    btn.onclick = function(){
+
+        let  product_id =  document.getElementById("product_id").textContent.slice(1);
+
+        location.assign("/dashboard/ProductPerformance/"+product_id+"?date="+yearMonth.value);
+
+    }
+
+</script>

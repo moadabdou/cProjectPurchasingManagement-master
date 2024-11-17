@@ -1,1 +1,50 @@
-[]
+[{
+		"notes":	"new sale",
+		"date":	"2024-11-14",
+		"employee_id":	10011425,
+		"shop_id":	0,
+		"id":	10011699,
+		"total_cost":	124.90999603271484
+	}, {
+		"notes":	"another sale",
+		"date":	"2024-11-14",
+		"employee_id":	10011425,
+		"shop_id":	0,
+		"id":	10012025,
+		"total_cost":	199.89999389648438
+	}, {
+		"notes":	"new sale",
+		"date":	"2024-11-14",
+		"employee_id":	10011425,
+		"shop_id":	0,
+		"id":	10025205,
+		"total_cost":	51.959999084472656
+	}, {
+		"notes":	"new sale today",
+		"date":	"2024-11-17",
+		"employee_id":	10011425,
+		"shop_id":	0,
+		"id":	10003177,
+		"total_cost":	143.91000366210938
+	}, {
+		"notes":	"this is new sae from  boch3ib",
+		"date":	"2024-11-17",
+		"employee_id":	10019978,
+		"shop_id":	1,
+		"id":	10020321,
+		"total_cost":	78.8699951171875
+	}, {
+		"notes":	"another sale from si boch3ib",
+		"date":	"2024-11-17",
+		"employee_id":	10019978,
+		"shop_id":	1,
+		"id":	10020804,
+		"total_cost":	191.8800048828125
+	}, {
+		"notes":	"new sale for gamma",
+		"date":	"2024-11-17",
+		"employee_id":	10031923,
+		"shop_id":	2,
+		"id":	10032286,
+		"total_cost":	419.8599853515625
+	}]

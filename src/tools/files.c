@@ -33,3 +33,22 @@ void write_file(const char *filename, const char *data , const char  *mode) {
     fprintf(file, "%s", data);
     fclose(file);
 }
+// load json  array  from a file
+cJSON* load_json_from_file(const char *path){
+
+    File_prop file_data = read_file(path, "r");
+    if (file_data.content == NULL){
+       printf("cant load  %s because we cant read it ", path);
+       return NULL; 
+    }
+    cJSON *json_data =  cJSON_Parse(file_data.content);
+    free(file_data.content);
+
+    if (json_data == NULL || !cJSON_IsArray(json_data)){
+        printf("cant load  %s because it cant be parsed ", path);
+        return NULL;
+    }
+
+    return json_data;
+
+}

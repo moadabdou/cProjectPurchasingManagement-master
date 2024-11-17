@@ -61,7 +61,7 @@ cJSON *check_email_password_validity(cJSON *json_data , cJSON *client_json){
 }
 
 void handel_employee_api(SOCKET client_socket, char *query , char *body, Sessions SESSIONS, int user_id){
-    File_prop json_file;
+    
     cJSON *client_data, *json_data;
 
     for (int i = 0;  i <  SESSIONS.max ;  i++){
@@ -69,23 +69,14 @@ void handel_employee_api(SOCKET client_socket, char *query , char *body, Session
     }
 
     if(strncmp(query , NEW ,  strlen(NEW)) == 0){
-        json_file = read_file(EMPLOYEES_DATAFILE,"r");
-
-        if (json_file.content == NULL || body == NULL) {
-           printf("cant open  files or cant  get body data");
-           SEND_ERROR_500;
-           return ;
-        }
-
+        
         client_data = cJSON_Parse(body);
-        json_data = cJSON_Parse(json_file.content);
-        free(json_file.content);
-
-        if (!json_data || !cJSON_IsArray(json_data) || !client_data || !cJSON_IsObject(client_data) ) {
-            printf("Error parsing JSON or not an array.\n");
+        json_data = load_json_from_file(EMPLOYEES_DATAFILE);
+        if (json_data ==  NULL || client_data == NULL){
             SEND_ERROR_500;
-            return;
+            return ;
         }
+
         
         cJSON_AddNumberToObject( client_data  ,"role" , 0);
         cJSON_AddNumberToObject( client_data  ,"state" , 0);
@@ -106,22 +97,11 @@ void handel_employee_api(SOCKET client_socket, char *query , char *body, Session
 
     }else if(strncmp(query , AUTH ,  strlen(AUTH)) == 0){
 
-        json_file = read_file(EMPLOYEES_DATAFILE,"r");
-
-        if (json_file.content == NULL || body == NULL) {
-           printf("cant open  files or cant  get body data");
-           SEND_ERROR_500;
-           return ;
-        }
-
         client_data = cJSON_Parse(body);
-        json_data = cJSON_Parse(json_file.content);
-        free(json_file.content);
-
-        if (!json_data || !cJSON_IsArray(json_data) || !client_data || !cJSON_IsObject(client_data) ) {
-            printf("Error parsing JSON or not an array.\n");
+        json_data = load_json_from_file(EMPLOYEES_DATAFILE);
+        if (json_data ==  NULL || client_data == NULL){
             SEND_ERROR_500;
-            return;
+            return ;
         }
 
         printf("\n checking auth ");
@@ -151,22 +131,11 @@ void handel_employee_api(SOCKET client_socket, char *query , char *body, Session
         send(client_socket, cJSON_Print(response_validity), strlen(cJSON_Print(response_validity)), 0);
 
     }else if(strncmp(query , SUSPEND ,  strlen(SUSPEND)) == 0){  
-        json_file = read_file(EMPLOYEES_DATAFILE, "r");
-        
-        if (json_file.content == NULL || body  == NULL) {
-           printf("\n ERROR : cant open  files or body is  NULL\n");
-           SEND_ERROR_500;
-           return;
-        }
-
         client_data = cJSON_Parse(body);
-        json_data = cJSON_Parse(json_file.content);
-        free(json_file.content);
-
-        if (!json_data || !cJSON_IsArray(json_data) || !client_data || !cJSON_IsArray(json_data) ) {
-            printf("Error parsing JSON or not an array.\n");
+        json_data = load_json_from_file(EMPLOYEES_DATAFILE);
+        if (json_data ==  NULL || client_data == NULL){
             SEND_ERROR_500;
-            return;
+            return ;
         }
 
         cJSON *target_id =  cJSON_GetObjectItem(client_data , "id");

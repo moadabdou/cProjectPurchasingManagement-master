@@ -15,8 +15,7 @@
 
 
 void handel_sales_api(SOCKET client_socket, char *query , char *body, Sessions SESSIONS, int user_id){
-    File_prop json_file;
-    cJSON *client_data, *json_data;
+
 
     for (int i = 0;  i <  SESSIONS.max ;  i++){
         printf("\n session %d : %d " , i , SESSIONS.sessions[i]);
@@ -28,38 +27,18 @@ void handel_sales_api(SOCKET client_socket, char *query , char *body, Sessions S
     }
     
     if(strncmp(query , NEW ,  strlen(NEW)) == 0){
-        File_prop _sales   = read_file(SALES_DATAFILE, "r"),
-                _sales_item = read_file(SALESITEMS_DATAFILE, "r"),
-                _products   = read_file(PRODUCTS_DATAFILE ,"r"),
-                _employeers  =  read_file(EMPLOYEES_DATAFILE, "r");
 
-        if(_sales.content == NULL || _sales_item.content == NULL ||  _products.content == NULL || _employeers.content == NULL){
-            printf("\n cant open one of the files :  %s %s %s %s", SALES_DATAFILE , SALESITEMS_DATAFILE, PRODUCTS_DATAFILE, EMPLOYEES_DATAFILE);
-            SEND_ERROR_500;
-            return;
-        }  
         //parsing data  
-        cJSON *sales_json = cJSON_Parse(_sales.content);
-        cJSON *sales_item_json = cJSON_Parse(_sales_item.content);
-        cJSON *products_json = cJSON_Parse(_products.content);
-        cJSON *employeers = cJSON_Parse(_employeers.content);
-        free(_sales.content);
-        free(_sales_item.content);
-        free(_products.content);
-        free(_employeers.content);
+        cJSON *employeers  = load_json_from_file(EMPLOYEES_DATAFILE);
+        cJSON *products_json  = load_json_from_file(PRODUCTS_DATAFILE);
+        cJSON *sales_item_json  = load_json_from_file(SALESITEMS_DATAFILE);
+        cJSON *sales_json  = load_json_from_file(SALES_DATAFILE);
+        cJSON *client_data = cJSON_Parse(body);
 
-        if (sales_json == NULL || sales_item_json == NULL || products_json == NULL || employeers == NULL){
-            printf("\n cant parse data one of the files :  %s %s %s %s", SALES_DATAFILE , SALESITEMS_DATAFILE, PRODUCTS_DATAFILE, EMPLOYEES_DATAFILE);
+        if (employeers ==  NULL   || client_data == NULL     || 
+            products_json == NULL || sales_item_json == NULL || sales_json == NULL ) {
             SEND_ERROR_500;
-            return;
-        }
-
-        client_data = cJSON_Parse(body);
-
-        if ( !client_data || !cJSON_IsObject(client_data) ) {
-            printf("Error parsing client JSON or not an array. \n");
-            SEND_ERROR_500;
-            return;
+            return ;
         }
 
         char current_date[15] ;
@@ -155,24 +134,12 @@ void handel_sales_api(SOCKET client_socket, char *query , char *body, Sessions S
             return;
         }
 
-        File_prop sales_file = read_file(SALES_DATAFILE, "r");
-        File_prop sales_items_file = read_file(SALESITEMS_DATAFILE, "r");
+        cJSON *sales_item_json  = load_json_from_file(SALESITEMS_DATAFILE);
+        cJSON *sales_json  = load_json_from_file(SALES_DATAFILE);
 
-        if( sales_file.content==NULL||sales_items_file.content==NULL){
-            printf("unable to opern the files\n");
+        if (sales_item_json == NULL || sales_json == NULL ) {
             SEND_ERROR_500;
-            return;
-        }
-
-        cJSON*sales_json = cJSON_Parse(sales_file.content);
-        cJSON*sales_item_json = cJSON_Parse(sales_items_file.content);
-        free(sales_file.content);
-        free(sales_items_file.content);
-
-        if(sales_item_json==NULL||sales_json==NULL){
-            printf("unable to parse the sales or the sales items\n");
-            SEND_ERROR_500;
-            return;
+            return ;
         }
 
         int sale_target_index = SearchIndex(sales_json,sale_id,"id"); 
