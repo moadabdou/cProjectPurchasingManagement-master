@@ -1,0 +1,37 @@
+<div class="alert alert-warning alert-dismissible fade d-none" role="alert">
+    <strong>Oops !</strong> cant approve this application
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<h1>
+    this  are the applications for this  position
+</h1>
+<div class="apps-container container">
+    //c_code:apps_list
+</div>
+
+<script>
+    const  alert_el = document.querySelector('.alert-warning');
+    const  shop_id  = location.href.match(/(\d+)/g)[1];
+    console.log(shop_id)
+    document.querySelectorAll(".apps-container .card .btn").forEach(btn=> {
+        btn.addEventListener("click" , function(event){
+
+            const id = Number(this.parentElement
+                                .children[1]
+                                .textContent
+                                .match(/id: #(\d+)/)[1])
+
+            fetch("/api/shops/assign/"+id+"/"+ shop_id, {
+                method : "POST"
+            }).then(res=>{
+                if (res.status == 200){
+                    location.replace("/dashboard/managers")
+                }else {
+                    alert_el.classList.remove("d-none");
+                    alert_el.classList.add("show")
+                    document.querySelector(".main").scrollTop = 0;
+                }       
+            })
+        })
+    })
+</script>

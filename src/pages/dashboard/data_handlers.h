@@ -329,6 +329,21 @@ char *get_insights(char *HTML_TEMPLATE, int shop_id, int is_admin){
     return side_content;
 }
 
+int  get_totale_sales(cJSON *sales , int emp_id){
+    int  count  = 0 ; 
+
+
+    for (int i= 0; i <  cJSON_GetArraySize(sales) ;  i++){
+        cJSON* sale = cJSON_GetArrayItem(sales, i);
+        if (cJSON_GetObjectItem(sale, "employee_id")->valueint == emp_id){
+            count ++;
+        }
+    }
+
+    return count;
+
+}
+
 char *get_employeer_insights(int user_id, char* HTML_TEMPLATE){
 
     cJSON* sales_json = load_json_from_file(SALES_DATAFILE);
@@ -537,5 +552,6 @@ char *get_performance_diagram(char *date, int shop_id, char *shop_name , int pro
         1
     }}, 3);
 }
+
 
 #endif

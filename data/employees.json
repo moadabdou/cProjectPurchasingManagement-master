@@ -59,8 +59,8 @@
 		"phone_number":	"0762017671",
 		"CIN":	"RC43656",
 		"birthdate":	"2005-11-29",
-		"shop_id":	1,
-		"role":	0,
+		"shop_id":	4,
+		"role":	1,
 		"state":	1,
 		"id":	10019978
 	}, {
@@ -74,4 +74,15 @@
 		"role":	0,
 		"state":	1,
 		"id":	10031923
+	}, {
+		"name":	"new emp ",
+		"email":	"example300@email.com",
+		"password":	"passcode123",
+		"phone_number":	"0762017671",
+		"CIN":	"RC43656",
+		"birthdate":	"2005-11-24",
+		"shop_id":	1,
+		"role":	0,
+		"state":	0,
+		"id":	10020218
 	}]

@@ -36,7 +36,7 @@ dashboardContent manager(char *query, char *body, int user_id, SOCKET client_soc
                 shop_id_manager == cJSON_GetObjectItem(employeer, "shop_id")->valueint
                 ){
                 sprintf(drop_element,
-                        "<li><a class=\"dropdown-item\" href=\"dashboard/sales/%d\">%s <span style=\"opacity:0.5\">#%d</span></a></li>",
+                        "<li><a class=\"dropdown-item\" href=\"/dashboard/sales/%d\">%s <span style=\"opacity:0.5\">#%d</span></a></li>",
                         cJSON_GetObjectItem(employeer, "id")->valueint,
                         cJSON_GetObjectItem(employeer, "name")->valuestring,
                         cJSON_GetObjectItem(employeer, "id")->valueint);

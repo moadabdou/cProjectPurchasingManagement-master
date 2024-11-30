@@ -1,0 +1,26 @@
+<h1>
+    wich shop  you want to  open manager position in 
+</h1>
+
+<div class="users-container container">
+    //c_code:shops
+</div>
+
+<script>
+    const open_app = document.getElementById("open_app");
+    if (open_app){
+        open_app.addEventListener("click" ,  function(event) {
+            event.preventDefault();
+
+            fetch(this.href, {
+                method : "POST"
+            });
+
+            location.reload()
+
+        })
+    }
+
+    
+</script>
+

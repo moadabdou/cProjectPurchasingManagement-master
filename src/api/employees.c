@@ -10,7 +10,7 @@
 
 #define AUTH  "/auth"
 #define NEW  "/new"
-#define SUSPEND "/suspend" //delete  already  used 
+#define SUSPEND "/suspend" 
 #define LOGOUT "/logout"
 
 char  check_email_validity(cJSON *json_data , cJSON *client_json){

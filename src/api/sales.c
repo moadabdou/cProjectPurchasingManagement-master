@@ -6,7 +6,6 @@
 #include "../tools/tools.h"
 #include "../tools/errors.h"
 #include "../tools/cJSON.h"
-#include "../pages/pages.h"
 #include "../data_vars.h"
 
 #define NEW  "/new"

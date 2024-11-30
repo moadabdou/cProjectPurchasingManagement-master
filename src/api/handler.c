@@ -10,7 +10,7 @@
 #define EMPLOYEE_QUERY "/employees"
 #define SALES_QUERY "/sales"
 #define PRODUCTS_QUERY "/products"
-
+#define SHOPS_QUERY "/shops"
 
 void handle_post(SOCKET client_socket, char *request,  Sessions SESSIONS, int user_id) { //api handler 
 
@@ -44,6 +44,8 @@ void handle_post(SOCKET client_socket, char *request,  Sessions SESSIONS, int us
         handel_sales_api(client_socket , query +  strlen(SALES_QUERY) , body, SESSIONS, user_id);
     }else if(strncmp(query, PRODUCTS_QUERY , strlen(PRODUCTS_QUERY))== 0){
         handel_products_api(client_socket , query +  strlen(PRODUCTS_QUERY) , body, SESSIONS, user_id);
+    }else if(strncmp(query, SHOPS_QUERY , strlen(SHOPS_QUERY))== 0){
+        handel_shops_api(client_socket , query +  strlen(SHOPS_QUERY) , body, SESSIONS, user_id);
     }else {
         SEND_ERROR_404_API;
     }

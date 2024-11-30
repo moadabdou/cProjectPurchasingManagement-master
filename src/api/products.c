@@ -2,11 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <winsock2.h>
-#include <time.h>
 #include "../tools/tools.h"
 #include "../tools/errors.h"
 #include "../tools/cJSON.h"
-#include "../pages/pages.h"
 #include "../data_vars.h"
 
 #define NEW  "/new"
