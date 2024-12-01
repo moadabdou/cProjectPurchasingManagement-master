@@ -68,11 +68,4 @@
 		"price":	8.99,
 		"description":	"Multi-compartment organizer for pens, paper, and more.",
 		"rating":	4.3
-	}, {
-		"name":	"new product",
-		"category":	"makla",
-		"price":	4.5,
-		"description":	"hello",
-		"rating":	3.5,
-		"id":	10010253
 	}]

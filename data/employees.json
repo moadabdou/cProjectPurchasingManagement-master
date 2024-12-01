@@ -41,48 +41,4 @@
 		"state":	1,
 		"birthdate":	"1985-05-15",
 		"name":	"Jane Smith"
-	}, {
-		"name":	"bochta",
-		"email":	"example2emp@email.com",
-		"password":	"passcode123",
-		"phone_number":	"0762017671",
-		"CIN":	"RC43656",
-		"birthdate":	"2005-11-24",
-		"shop_id":	0,
-		"role":	0,
-		"state":	1,
-		"id":	10011425
-	}, {
-		"name":	"boch3ib",
-		"email":	"exampboch@email.com",
-		"password":	"wpass321",
-		"phone_number":	"0762017671",
-		"CIN":	"RC43656",
-		"birthdate":	"2005-11-29",
-		"shop_id":	4,
-		"role":	1,
-		"state":	1,
-		"id":	10019978
-	}, {
-		"name":	"ahmed",
-		"email":	"eeex@email.com",
-		"password":	"wpass321",
-		"phone_number":	"0762017671",
-		"CIN":	"RC43656",
-		"birthdate":	"2005-11-24",
-		"shop_id":	2,
-		"role":	0,
-		"state":	1,
-		"id":	10031923
-	}, {
-		"name":	"new emp ",
-		"email":	"example300@email.com",
-		"password":	"passcode123",
-		"phone_number":	"0762017671",
-		"CIN":	"RC43656",
-		"birthdate":	"2005-11-24",
-		"shop_id":	1,
-		"role":	0,
-		"state":	0,
-		"id":	10020218
 	}]

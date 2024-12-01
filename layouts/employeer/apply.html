@@ -1,5 +1,5 @@
 <h1>
-    wich shop  you want to  open manager position in 
+    open positions as  a  manager 
 </h1>
 
 <div class="users-container container">
@@ -7,8 +7,9 @@
 </div>
 
 <script>
-    const open_app = document.querySelectorAll("#open_app");
-    open_app.forEach(el=>{
+    const apply_app = document.querySelectorAll("#apply_app");
+
+    apply_app.forEach(el=> {
         el.addEventListener("click" ,  function(event) {
             event.preventDefault();
 
@@ -19,10 +20,7 @@
                     location.reload()
                 }
             });
-
         })
     })
 
-    
 </script>
-

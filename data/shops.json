@@ -52,40 +52,4 @@
 			"sunday":	"Closed"
 		},
 		"open_to_apply":	0
-	}, {
-		"id":	4,
-		"name":	"Lambda",
-		"location":	"123 Main St, City Center",
-		"contact":	{
-			"phone":	"123-456-7890",
-			"email":	"contact@alfa.com"
-		},
-		"opening_hours":	{
-			"monday":	"9:00 AM - 6:00 PM",
-			"tuesday":	"9:00 AM - 6:00 PM",
-			"wednesday":	"9:00 AM - 6:00 PM",
-			"thursday":	"9:00 AM - 6:00 PM",
-			"friday":	"9:00 AM - 6:00 PM",
-			"saturday":	"10:00 AM - 5:00 PM",
-			"sunday":	"Closed"
-		},
-		"open_to_apply":	0
-	}, {
-		"name":	"moad el abdellaoui",
-		"location":	"Al hoceima targuist bnibchir",
-		"contact":	{
-			"phone":	"0762017671",
-			"email":	"abdellawy553@gmail.com"
-		},
-		"opening_hours":	{
-			"monday":	" - ",
-			"tuesday":	" - ",
-			"wednesday":	" - ",
-			"thursday":	" - ",
-			"friday":	" - ",
-			"saturday":	" - ",
-			"sunday":	" - "
-		},
-		"id":	10011177,
-		"open_to_apply":	2
 	}]

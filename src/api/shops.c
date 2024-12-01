@@ -9,6 +9,7 @@
 #define NEW  "/new"
 #define OPEN "/open"
 #define  ASSIGN "/assign"
+#define  APPLY "/apply"
 
 void handel_shops_api(SOCKET client_socket, char *query , char *body, Sessions SESSIONS, int user_id){
     
@@ -89,7 +90,6 @@ void handel_shops_api(SOCKET client_socket, char *query , char *body, Sessions S
     }else if(strncmp(query , ASSIGN ,  strlen(ASSIGN)) == 0){
 
         int emp_id = 0, shop_id = 0;
-        printf("%s" , query );
         sscanf(query, ASSIGN "/%d/%d",&emp_id, &shop_id ) ;
 
         if(emp_id <= 0 || shop_id <= 0){
@@ -139,16 +139,86 @@ void handel_shops_api(SOCKET client_socket, char *query , char *body, Sessions S
             cJSON* app = cJSON_GetArrayItem(apps_json, i);
 
             if (cJSON_GetObjectItem(app , "shop_id")->valueint ==  shop_id){
-
                 cJSON_DeleteItemFromArray(apps_json, i);
                 break;
             }
+
+
+        }
+
+        for (int i = 0 ; i <  cJSON_GetArraySize(apps_json) ; i ++){
+
+            cJSON* app = cJSON_GetArrayItem(apps_json, i);
+
+            cJSON*  shop_apps = cJSON_GetObjectItem(app , "apps");
+            printf("removing from  apps ");
+            for (int j = 0 ;  j <  cJSON_GetArraySize(shop_apps) ; j++ ){
+                int applier_id = cJSON_GetArrayItem(shop_apps, j)->valueint;
+                if (applier_id == emp_id){
+                    printf("removed from  apps ");
+                    cJSON_DeleteItemFromArray(shop_apps, j);
+                    break;
+                }
+            }
+
 
         }
 
 
         write_file(SHOPS_DATAFILE, cJSON_Print(shops_json), "w");
         write_file(EMPLOYEES_DATAFILE, cJSON_Print(employeers_json), "w");
+        write_file(APPS_MANAGER_DF , cJSON_Print(apps_json) , "w");
+
+        char responce[64] = "HTTP/1.1 200 OK";
+        send(client_socket, responce, strlen(responce), 0);
+
+    }else if(strncmp(query , APPLY ,  strlen(APPLY)) == 0){
+
+        int shop_id = 0;
+        printf("%s" , query );
+        sscanf(query, APPLY "/%d",&shop_id ) ;
+
+        if(shop_id <= 0){
+            SEND_ERROR_404;
+            return;
+        } 
+
+        cJSON* apps_json =  load_json_from_file(APPS_MANAGER_DF);     
+
+
+        if (apps_json == NULL){
+            SEND_ERROR_500
+            return;
+        }
+
+
+        for (int i = 0 ; i <  cJSON_GetArraySize(apps_json) ; i ++){
+
+            cJSON* app = cJSON_GetArrayItem(apps_json, i);
+
+            if (cJSON_GetObjectItem(app , "shop_id")->valueint ==  shop_id){
+                cJSON*  shop_apps = cJSON_GetObjectItem(app , "apps");
+                int applied =  0 ;  
+
+                for (int i = 0 ;  i <  cJSON_GetArraySize(shop_apps) ; i++ ){
+                    int applier_id = cJSON_GetArrayItem(shop_apps, i)->valueint;
+                    if (applier_id == user_id){
+                        applied =  1; 
+                        break;
+                    }
+                }
+
+                if (!applied){
+                    cJSON_AddItemToArray(shop_apps , cJSON_CreateNumber(user_id));
+                }
+
+                break;
+            }
+
+        }
+
+
+
         write_file(APPS_MANAGER_DF , cJSON_Print(apps_json) , "w");
 
         char responce[64] = "HTTP/1.1 200 OK";
