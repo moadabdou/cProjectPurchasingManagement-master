@@ -1,1 +1,121 @@
-[]
+[{
+		"sale_id":	10016446,
+		"products":	[{
+				"product_id":	100,
+				"quantity":	3
+			}, {
+				"product_id":	107,
+				"quantity":	4
+			}, {
+				"product_id":	106,
+				"quantity":	5
+			}]
+	}, {
+		"sale_id":	10016642,
+		"products":	[{
+				"product_id":	104,
+				"quantity":	5
+			}, {
+				"product_id":	109,
+				"quantity":	7
+			}, {
+				"product_id":	105,
+				"quantity":	1
+			}]
+	}, {
+		"sale_id":	10031328,
+		"products":	[{
+				"product_id":	100,
+				"quantity":	10
+			}, {
+				"product_id":	103,
+				"quantity":	3
+			}, {
+				"product_id":	106,
+				"quantity":	2
+			}, {
+				"product_id":	107,
+				"quantity":	22
+			}]
+	}, {
+		"sale_id":	10031641,
+		"products":	[{
+				"product_id":	102,
+				"quantity":	10
+			}, {
+				"product_id":	109,
+				"quantity":	1
+			}, {
+				"product_id":	106,
+				"quantity":	2
+			}, {
+				"product_id":	105,
+				"quantity":	3
+			}]
+	}, {
+		"sale_id":	10032464,
+		"products":	[{
+				"product_id":	101,
+				"quantity":	2
+			}, {
+				"product_id":	106,
+				"quantity":	5
+			}, {
+				"product_id":	107,
+				"quantity":	1
+			}, {
+				"product_id":	108,
+				"quantity":	4
+			}]
+	}, {
+		"sale_id":	10002658,
+		"products":	[{
+				"product_id":	100,
+				"quantity":	1
+			}, {
+				"product_id":	107,
+				"quantity":	2
+			}, {
+				"product_id":	103,
+				"quantity":	4
+			}, {
+				"product_id":	106,
+				"quantity":	5
+			}]
+	}, {
+		"sale_id":	10002991,
+		"products":	[{
+				"product_id":	101,
+				"quantity":	1
+			}, {
+				"product_id":	106,
+				"quantity":	9
+			}, {
+				"product_id":	102,
+				"quantity":	12
+			}, {
+				"product_id":	101,
+				"quantity":	20
+			}]
+	},{
+		"sale_id":	10002991,
+		"products":	[{
+				"product_id":	108,
+				"quantity":	22
+			}, {
+				"product_id":	105,
+				"quantity":	20
+			}]
+	}, {
+		"sale_id":	10003337,
+		"products":	[{
+				"product_id":	101,
+				"quantity":	22
+			}, {
+				"product_id":	100,
+				"quantity":	19
+			}, {
+				"product_id":	108,
+				"quantity":	10
+			}]
+	}]

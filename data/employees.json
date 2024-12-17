@@ -41,4 +41,59 @@
 		"state":	1,
 		"birthdate":	"1985-05-15",
 		"name":	"Jane Smith"
+	}, {
+		"name":	"emp1",
+		"email":	"example5@email.com",
+		"password":	"12345",
+		"phone_number":	"734567189",
+		"CIN":	"K907532",
+		"birthdate":	"2005-11-29",
+		"shop_id":	0,
+		"role":	0,
+		"state":	1,
+		"id":	10014111
+	}, {
+		"name":	"emp2",
+		"email":	"example6@email.com",
+		"password":	"AAAAA22",
+		"phone_number":	"094705950988",
+		"CIN":	"L0987205",
+		"birthdate":	"2005-11-16",
+		"shop_id":	1,
+		"role":	0,
+		"state":	1,
+		"id":	10014311
+	}, {
+		"name":	"emp3",
+		"email":	"example7@email.com",
+		"password":	"0032300",
+		"phone_number":	"78369434556",
+		"CIN":	"O8976123548",
+		"birthdate":	"2005-10-20",
+		"shop_id":	2,
+		"role":	0,
+		"state":	1,
+		"id":	10014507
+	}, {
+		"name":	"Alfred Jones",
+		"email":	"AlfredJone900@email.com",
+		"password":	"password123",
+		"phone_number":	"0762017671",
+		"CIN":	"RC45532",
+		"birthdate":	"2005-11-02",
+		"shop_id":	1,
+		"role":	0,
+		"state":	1,
+		"id":	10000862
+	},{
+		"name":	"Marcus Whitfield",
+		"email":	"Marcus@email.com",
+		"password":	"2020@",
+		"phone_number":	"89749793058",
+		"CIN":	"J78344",
+		"birthdate":	"2002-02-12",
+		"shop_id":	1,
+		"role":	0,
+		"state":	1,
+		"id":	10002642
 	}]

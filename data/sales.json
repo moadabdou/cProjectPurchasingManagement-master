@@ -1,1 +1,64 @@
-[]
+[{
+		"notes":	"",
+		"date":	"2024-12-12",
+		"employee_id":	10014111,
+		"shop_id":	0,
+		"id":	10016446,
+		"total_cost":	95.8800048828125
+	}, {
+		"notes":	"",
+		"date":	"2024-12-12",
+		"employee_id":	10014111,
+		"shop_id":	0,
+		"id":	10016642,
+		"total_cost":	133.3699951171875
+	}, {
+		"notes":	"new sale from  emplyee 2 ",
+		"date":	"2024-12-17",
+		"employee_id":	10014311,
+		"shop_id":	1,
+		"id":	10031328,
+		"total_cost":	381.6300048828125
+	}, {
+		"notes":	"new sale from emp2, frequently  visiting guy.",
+		"date":	"2024-12-17",
+		"employee_id":	10014311,
+		"shop_id":	1,
+		"id":	10031641,
+		"total_cost":	133.33999633789063
+	}, {
+		"notes":	"there was a litte complaining  from the customer about the usb cable limited colors.",
+		"date":	"2024-12-17",
+		"employee_id":	10014311,
+		"shop_id":	1,
+		"id":	10032464,
+		"total_cost":	286.8800048828125
+	}, {
+		"notes":	"my  first sale alfred jones. ",
+		"date":	"2024-12-17",
+		"employee_id":	10000862,
+		"shop_id":	1,
+		"id":	10002658,
+		"total_cost":	129.8800048828125
+	}, {
+		"notes":	"second sale, there was alitle of  congestion.",
+		"date":	"2024-12-17",
+		"employee_id":	10000862,
+		"shop_id":	1,
+		"id":	10002991,
+		"total_cost":	785.5799560546875
+	},{
+		"notes":	"First sale",
+		"date":	"2024-12-17",
+		"employee_id":	10002642,
+		"shop_id":	1,
+		"id":	10002991,
+		"total_cost":	1209.580078125
+	}, {
+		"notes":	"second sale",
+		"date":	"2024-12-17",
+		"employee_id":	10002642,
+		"shop_id":	1,
+		"id":	10003337,
+		"total_cost":	1463.489990234375
+	}]
