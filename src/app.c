@@ -112,6 +112,7 @@ int main() {
                 printf("\nERROR :  invalid id cookie > login page");
                 index_html(client_socket);
             }
+            
 
         } else if (strncmp(buffer, API, strlen(API)) == 0) {
             if (*endptr != '\0'){

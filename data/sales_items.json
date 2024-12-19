@@ -85,21 +85,6 @@
 	}, {
 		"sale_id":	10002991,
 		"products":	[{
-				"product_id":	101,
-				"quantity":	1
-			}, {
-				"product_id":	106,
-				"quantity":	9
-			}, {
-				"product_id":	102,
-				"quantity":	12
-			}, {
-				"product_id":	101,
-				"quantity":	20
-			}]
-	},{
-		"sale_id":	10002991,
-		"products":	[{
 				"product_id":	108,
 				"quantity":	22
 			}, {

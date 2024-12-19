@@ -444,15 +444,15 @@ form button:hover {
                         <label>your full name</label>
                     </div>
                     <div class="input-field">
-                        <input name="email" type="text" required>
+                        <input name="email" maxlength="40" type="text" required>
                         <label>Enter your email</label>
                     </div>
                     <div class="input-field">
-                        <input name="password" type="password" required>
+                        <input name="password"  maxlength="20" type="password" required>
                         <label>Create password</label>
                     </div>
                     <div class="input-field">
-                        <input name="phone_number" type="number" required>
+                        <input name="phone_number" maxlength="12" type="number" required>
                         <label>phone number</label>
                     </div>
                     <div class="input-field">
@@ -460,7 +460,7 @@ form button:hover {
                         <label>CIN</label>
                     </div>
                     <div class="input-field">
-                        <input name="birthdate" id="datefield" type="date" value="0" min="1950-01-31" max="2005-12-01">
+                        <input name="birthdate" id="datefield" required type="date" value="0" min="1950-01-31" max="2005-12-01">
                         <label>birth date</label>
                     </div>
                     <div class="form-group mt-2">
@@ -481,6 +481,19 @@ form button:hover {
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
     <script>
+
+
+        function  check_pswd(pswd){
+            let pattern = /^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,}$/
+
+            return  pattern.test(pswd);
+        }
+
+        function check_CIN(cin){
+            let pattern = /^[A-Za-z]{1,2}[0-9]{1,6}$/
+            return pattern.test(cin)
+        }
+
         history.replaceState(null, '', '/');
 
 
@@ -522,6 +535,15 @@ form button:hover {
                 formPopup.classList[link.id === 'signup-link' ? 'add' : 'remove']("show-signup");
             });
         });
+
+        let  errorMessages = {
+                400 : "<p style='color:red' > email  is not  valid or  already  exist </p>", 
+                500 : "<p style='color:red' > internal  server error</p>",
+                0 : "<p> password  is weak </p>",
+                1 : "<p> cin is  invalid </p>"
+            }
+        
+
         document.getElementById('signup-form').addEventListener('submit', function (event) {
             event.preventDefault(); // Prevent form submission
             
@@ -529,15 +551,22 @@ form button:hover {
             const formData = new FormData(form); // Create FormData object
             const jsonData = {}; // Create an empty object for JSON data
 
+
+            if (!check_pswd(formData.get("password"))){
+                document.getElementById("sign-error-message").innerHTML = errorMessages[0]
+                return ;
+            }
+
+            if (!check_CIN(formData.get("CIN"))){
+                document.getElementById("sign-error-message").innerHTML = errorMessages[1]
+                return ;
+            }
+    
             // Loop through FormData and add each entry to jsonData
             formData.forEach((value, key) => {
                 jsonData[key] = ["shop_id"].find(el=> el == key)? Number(value) : value;
-            });
+            }); 
 
-            let  errorMessages = {
-                400 : "<p style='color:red' > email  is not  valid or  already  exist </p>", 
-                500 : "<p style='color:red' > internal  server error</p>"
-            }
 
             fetch("/api/employees/new" , {
                 method:"POST" , 

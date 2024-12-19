@@ -58,6 +58,13 @@ dashboardContent manager(char *query, char *body, int user_id, SOCKET client_soc
         if (employeer_id >  0){
             sales_list = getSalesMadeBy(employeer_id);
             cJSON *emp = searchById(employeers_json, employeer_id);
+            if (emp ==  NULL
+                || cJSON_GetObjectItem(emp, "shop_id")->valueint != shop_id_manager){
+                printf("\n>> cant  get  sales of this user");
+                SEND_ERROR_404;
+                return NULL_CONTENT;
+            }
+
             char *name = cJSON_GetObjectItem(emp, "name")->valuestring;
             snprintf(employeers_name, sizeof(employeers_name), "<h3> theses are %s's sales :</h3>", name);
             is_sale_list_malloc = 1;
